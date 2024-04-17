@@ -2,18 +2,18 @@ import useChartColors from "#/Common/useChartColors";
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-const SalesRevenueOverviewChart = ({ chartId }: any) => {
+
+interface ISalesRevenueOverviewChart {
+	chartId:string
+	series:any
+	xAxis:string[]
+}
+
+const SalesRevenueOverviewChart: React.FC<ISalesRevenueOverviewChart> = ({ chartId, series, xAxis }) => {
+
 
 	const chartColors = useChartColors(chartId);
 
-	//Sales Revenue Overview
-	const series = [{
-		name: 'Total Sales',
-		data: [44, 55, 41, 67, 22, 43, 21, 49, 20, 41, 67, 22,]
-	}, {
-		name: 'Total Profit',
-		data: [11, 17, 15, 15, 21, 14, 15, 13, 5, 15, 15, 21,]
-	}];
 	var options: any = {
 		chart: {
 			type: 'bar',
@@ -25,7 +25,7 @@ const SalesRevenueOverviewChart = ({ chartId }: any) => {
 			},
 		},
 		xaxis: {
-			categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+			categories: xAxis,
 		},
 		tooltip: {
 			y: {
@@ -57,22 +57,22 @@ const SalesRevenueOverviewChart = ({ chartId }: any) => {
 	};
 	return (
 		<React.Fragment>
-			<ReactApexChart
-				dir="ltr"
-				options={options}
-				series={series}
-				data-chart-colors='["bg-custom-500", "bg-custom-400", "bg-custom-300"]'
-				id={chartId}
-				className="apex-charts"
-				type='bar'
-				height={300}
-			/>
+			{series?.length > 0 && (
+				<ReactApexChart
+					dir="ltr"
+					options={options}
+					series={series}
+					data-chart-colors='["bg-custom-500", "bg-custom-400", "bg-custom-300"]'
+					id={chartId}
+					className="apex-charts"
+					type='bar'
+					height={300}
+				/>
+			)}
 		</React.Fragment>
 	);
 };
 
 
 
-export {
-	SalesRevenueOverviewChart
-}
+export default SalesRevenueOverviewChart

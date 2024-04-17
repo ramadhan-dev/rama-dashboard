@@ -68,3 +68,6 @@ export const postSocialLogin = (data: any) => api.create(url.SOCIAL_LOGIN, data)
 
 
 export const getCounter = () => api.get(url.GET_ECOMMERCE_COUNTER, null);
+export const getOrderStatistics = () => api.get(url.GET_ECOMMERCE_ORDER_STATISTICS, null);
+export const getSalesRevenues = () => api.get(url.GET_ECOMMERCE_SALES_REVENUES, null);
+

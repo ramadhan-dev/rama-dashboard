@@ -15,4 +15,6 @@ export const POST_EDIT_PROFILE = "/user";
 
 // COUNTER
 export const GET_ECOMMERCE_COUNTER = "/ecommerce/counter";
+export const GET_ECOMMERCE_ORDER_STATISTICS = "/ecommerce/order-statistics";
+export const GET_ECOMMERCE_SALES_REVENUES = "/ecommerce/sales-revenue";
 

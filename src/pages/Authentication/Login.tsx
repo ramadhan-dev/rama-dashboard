@@ -6,8 +6,8 @@ import * as Yup from "yup";
 import { useFormik as useFormic } from "formik";
 
 // Image
-import logoLight from "#/assets/images/logo-light.png";
-import logoDark from "#/assets/images/logo-dark.png";
+import logoLight from "#/assets/images/logo-3.png";
+import logoDark from "#/assets/images/logo-3.png";
 import { loginUser, socialLogin } from "#/slices/thunk";
 import { useDispatch, useSelector } from "react-redux";
 import withRouter from "#/Common/withRouter";
@@ -38,7 +38,7 @@ const Login = (props: any) => {
         enableReinitialize: true,
 
         initialValues: {
-            email: user.email || "admin@themesbrand.com" || '',
+            email: user.email || "admin@ramadhan.com" || '',
             password: user.password || "123456" || '',
         },
         validationSchema: Yup.object({
@@ -61,18 +61,16 @@ const Login = (props: any) => {
     React.useEffect(() => {
         const bodyElement = document.body;
 
-        bodyElement.classList.add('flex', 'items-center', 'justify-center', 'min-h-screen', 'py-16', 'lg:py-10', 'bg-slate-50', 'dark:bg-zink-800', 'dark:text-zink-100', 'font-public');
+        bodyElement.classList.add('flex', 'items-center', 'justify-center', 'min-h-screen', 'py-16', 'lg:py-10', 'bg-slate-200', 'dark:bg-zink-800', 'dark:text-zink-100', 'font-public');
 
         return () => {
-            bodyElement.classList.remove('flex', 'items-center', 'justify-center', 'min-h-screen', 'py-16', 'lg:py-10', 'bg-slate-50', 'dark:bg-zink-800', 'dark:text-zink-100', 'font-public');
+            bodyElement.classList.remove('flex', 'items-center', 'justify-center', 'min-h-screen', 'py-16', 'lg:py-10', 'bg-slate-200', 'dark:bg-zink-800', 'dark:text-zink-100', 'font-public');
         }
     }, []);
 
     return (
         <React.Fragment>
             <div className="relative">
-                <AuthIcon />
-
                 <div className="mb-0 w-screen lg:mx-auto lg:w-[500px] card shadow-lg border-none shadow-slate-100 relative">
                     <div className="!px-10 !py-12 card-body">
                         <Link to="/">
@@ -82,7 +80,7 @@ const Login = (props: any) => {
 
                         <div className="mt-8 text-center">
                             <h4 className="mb-1 text-custom-500 dark:text-custom-500">Welcome Back !</h4>
-                            <p className="text-slate-500 dark:text-zink-200">Sign in to continue to Tailwick.</p>
+                            <p className="text-slate-500 dark:text-zink-200">Sign in to continue to Admin.</p>
                         </div>
 
                         <form className="mt-10" id="signInForm"
@@ -98,7 +96,7 @@ const Login = (props: any) => {
                                 You have <b>failed</b> signed in.
                             </div>}
                             <div className="mb-3">
-                                <label htmlFor="email" className="inline-block mb-2 text-base font-medium">UserName/ Email ID</label>
+                                <label htmlFor="email" className="inline-block mb-2 text-base font-medium">Username/ Email ID</label>
                                 <input
                                     type="text"
                                     id="email"

@@ -5,34 +5,7 @@ import * as url from "../url_helper";
 
 import accessToken from "../jwt-token-access/accessToken";
 
-import {
-  ChatUser,
-  CalenderCategories,
-  Events,
-  OrderListData,
-  SellersData,
-  EmployeeListData,
-  HolidaysData,
-  DepartmentsListData,
-  EstimatesData,
-  ExpensesData,
-  NotesData,
-  EventData,
-  UserListViewData,
-  GridViewData,
-  ListViewData,
-  ProductGridViewData,
-  LeaveManageHRData,
-  EmployeeSalaryData,
-  AttendanceData,
-  MainAttendanceData,
-  LeaveManageEmployeeData,
-  PaymentsData,
-  FriendsData,
-  ProductReviewsData,
-  MailList,
-  InvoiceList
-} from "#/Common/data";
+import { CountersData, OrderStatisticData, SalesRevenueData } from "#/Common/data/ecommerce";
 
 let users = [
   {
@@ -40,7 +13,7 @@ let users = [
     username: "admin",
     role: "admin",
     password: "123456",
-    email: "admin@themesbrand.com",
+    email: "admin@ramadhan.com",
   },
 ];
 
@@ -226,9 +199,9 @@ const fakeBackend = () => {
 	mock.onGet(url.GET_ECOMMERCE_COUNTER).reply(() => {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
-				if (GridViewData) {
+				if (CountersData) {
 					// Passing fake JSON data as response
-					resolve([200, GridViewData]);
+					resolve([200, CountersData]);
 				} else {
 					reject([400, "cannot get user data"]);
 				}
@@ -236,7 +209,42 @@ const fakeBackend = () => {
 		});
 	});
 
+
+
+	// Grid View
+	mock.onGet(url.GET_ECOMMERCE_ORDER_STATISTICS).reply(() => {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				if (OrderStatisticData) {
+					// Passing fake JSON data as response
+					resolve([200, OrderStatisticData]);
+				} else {
+					reject([400, "cannot get user data"]);
+				}
+			});
+		});
+	});
+
+
+
+	// Grid View
+	mock.onGet(url.GET_ECOMMERCE_SALES_REVENUES).reply(() => {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				if (SalesRevenueData) {
+					// Passing fake JSON data as response
+					resolve([200, SalesRevenueData]);
+				} else {
+					reject([400, "cannot get user data"]);
+				}
+			});
+		});
+	});
+
+
 };
+
+
 
 
 

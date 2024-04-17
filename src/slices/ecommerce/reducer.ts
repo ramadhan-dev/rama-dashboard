@@ -1,13 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCounters } from "./thunk";
+import { getCounters, getOrderStatistic, getSalesRevenue } from "./thunk";
 
 export const initialState = {
 	orders: [],
 	sellers: [],
 	productList: [],
 	productGrid: [],
-	reviews: [],
-	errors: {}
+	counter: [],
+	counterErrors: {},
+	orderStatistics: [],
+	orderStatisticsErrors: {},
+	salesRevenue: [],
+	salesRevenueErrors: {}
+
 };
 
 const EcommerceSlice = createSlice({
@@ -17,12 +22,26 @@ const EcommerceSlice = createSlice({
 	extraReducers: (builder) => {
 		// counter
 		builder.addCase(getCounters.fulfilled, (state: any, action: any) => {
-			console.log("🚀 ~ builder.addCase ~ action:", action)
-			console.log("🚀 ~ builder.addCase ~ state:", state)
-			state.reviews = action.payload;
+			state.counter = action.payload;
 		});
 		builder.addCase(getCounters.rejected, (state: any, action: any) => {
-			state.error = action.payload.error || null;
+			state.counterErrors = action.payload.error || null;
+		});
+
+		// order statistics
+		builder.addCase(getOrderStatistic.fulfilled, (state: any, action: any) => {
+			state.orderStatistics = action.payload;
+		});
+		builder.addCase(getOrderStatistic.rejected, (state: any, action: any) => {
+			state.orderStatisticsErrors = action.payload.error || null;
+		});
+
+		// order statistics
+		builder.addCase(getSalesRevenue.fulfilled, (state: any, action: any) => {
+			state.salesRevenue = action.payload;
+		});
+		builder.addCase(getSalesRevenue.rejected, (state: any, action: any) => {
+			state.salesRevenueErrors = action.payload.error || null;
 		});
 	}
 })
