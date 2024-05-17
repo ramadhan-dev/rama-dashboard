@@ -7,6 +7,6 @@ module.exports = plugin(function ({ addComponents }) {
         },
         '.clip-triangle' : {
             clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
-        }   
+        }
     })
 })

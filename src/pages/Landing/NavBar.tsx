@@ -27,11 +27,13 @@ const NavBar = () => {
 
     const [navClass, setNavClass] = React.useState<string>('');
 
+
+
     // scroll
     const scrollNavigation = () => {
         var scrollUp = document.documentElement.scrollTop;
         if (scrollUp >= 50) {
-            setNavClass('is-sticky');
+            setNavClass('duration-700');
         } else {
             setNavClass('');
         }

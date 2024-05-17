@@ -2,10 +2,11 @@
 import BreadCrumb from "#/Common/BreadCrumb";
 import React, { lazy, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import OrderStatisticComponent from "./partials/OrderStatisticComponent";
-import CounterComponent from "./partials/CounterComponent";
 
-import SalesRevenueComponent from "./partials/SalesRevenueComponent";
+const ProductOrderComponent = lazy(() => import("./partials/ProductOrderComponent"))
+const OrderStatisticComponent = lazy(() => import("./partials/OrderStatisticComponent"))
+const CounterComponent = lazy(() => import("./partials/CounterComponent"))
+const SalesRevenueComponent = lazy(() => import("./partials/SalesRevenueComponent"))
 const WelcomeComponent = lazy(() => import("./partials/WelcomeComponent"));
 
 const Ecommerce = () => {
@@ -15,13 +16,14 @@ const Ecommerce = () => {
 
 	return (
 		<React.Fragment>
-			<BreadCrumb title='Ecommerce' pageTitle='Dashboards' />
+			<BreadCrumb title='' pageTitle='Dashboards' />
 
 			{/* Welcome Message */}
 			<WelcomeComponent />
 
 			{/* Counter Data */}
 			<CounterComponent />
+
 
 			{/* Grafik Data */}
 			<div className="grid grid-cols-12 gap-x-5">
@@ -33,6 +35,10 @@ const Ecommerce = () => {
 				</div>
 
 			</div>
+
+		{/*  */}
+			<ProductOrderComponent />
+
 		</React.Fragment>
 	);
 };

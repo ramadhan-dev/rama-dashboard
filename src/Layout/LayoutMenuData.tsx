@@ -9,7 +9,7 @@ const menuData: any = [
         id: 'main-dashboard',
         label: 'Dashboard',
         icon: <MonitorCheck />,
-        link: '/',
+        link: '/dashboard',
         parentId: 1
     }
 ];

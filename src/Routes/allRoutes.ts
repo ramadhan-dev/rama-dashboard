@@ -14,7 +14,6 @@ interface RouteObject {
 
 const authProtectedRoutes: Array<RouteObject> = [
   // Dashboard
-	{ path: "/", component: LandingPage },
   { path: "/dashboard", component: Ecommerce },
   { path: "/user-profile", component: UserProfile },
 ];
@@ -22,7 +21,7 @@ const authProtectedRoutes: Array<RouteObject> = [
 const publicRoutes = [
 
   // authentication
-	{ path: "/landing", component: LandingPage },
+	{ path: "/", component: LandingPage },
 	{ path: "/login", component: Login },
   { path: "/logout", component: Logout },
   { path: "/register", component: Register },
