@@ -1,10 +1,16 @@
+import { lazy } from "react";
+
 // dashboard
-import Ecommerce from "#/pages/Dashboards/Ecommerce";
-import UserProfile from "#/pages/Authentication/UserProfile";
-import Login from "#/pages/Authentication/Login";
-import Logout from "#/pages/Authentication/LogOut";
-import Register from "#/pages/Authentication/Register";
-import LandingPage from "#/pages/Landing";
+const Ecommerce = lazy(() => import("#/pages/Dashboards/Ecommerce"));
+const UserProfile = lazy(() => import("#/pages/Authentication/UserProfile"));
+const Login = lazy(() => import("#/pages/Authentication/Login"));
+const Logout = lazy(() => import("#/pages/Authentication/LogOut"));
+const Register = lazy(() => import("#/pages/Authentication/Register"));
+const LandingPage = lazy(() => import("#/pages/Landing"));
+const CityComponent = lazy(() => import("#/pages/Dashboards/Data_Master/City"));
+const DistrictComponent = lazy(() => import("#/pages/Dashboards/Data_Master/District"));
+const ProvinceComponent = lazy(() => import("#/pages/Dashboards/Data_Master/Province"));
+const SubDistrictComponent = lazy(() => import("#/pages/Dashboards/Data_Master/Sub_District"));
 
 interface RouteObject {
   path: string;
@@ -13,19 +19,19 @@ interface RouteObject {
 }
 
 const authProtectedRoutes: Array<RouteObject> = [
-  // Dashboard
-  { path: "/dashboard", component: Ecommerce },
+	{ path: "/dashboard", component: Ecommerce },
+	{ path: "/data-master/sub-district", component: SubDistrictComponent },
+	{ path: "/data-master/district", component: DistrictComponent },
+	{ path: "/data-master/city", component: CityComponent },
+	{ path: "/data-master/province", component: ProvinceComponent },
   { path: "/user-profile", component: UserProfile },
 ];
 
 const publicRoutes = [
-
-  // authentication
 	{ path: "/", component: LandingPage },
 	{ path: "/login", component: Login },
   { path: "/logout", component: Logout },
   { path: "/register", component: Register },
-
 ]
 
 export { authProtectedRoutes, publicRoutes };

@@ -54,67 +54,67 @@ const Header = ({ handleToggleDrawer, handleDrawer }: any) => {
         }
     }
 
-    useEffect(() => {
-        // resize
-        const handleResizeLayout = () => {
-            var windowSize = document.documentElement.clientWidth;
+    // useEffect(() => {
+    //     // resize
+    //     const handleResizeLayout = () => {
+    //         var windowSize = document.documentElement.clientWidth;
 
-            if (windowSize < 768) {
-                dispatch(changeLeftsidebarSizeType("lg"));
-            } else if (windowSize <= 1024) {
-                if (layoutType === "vertical") {
-                    dispatch(changeLeftsidebarSizeType("sm"));
-                } else {
-                    dispatch(changeLeftsidebarSizeType("lg"));
-                }
-            } else {
-                dispatch(changeLeftsidebarSizeType("lg"));
+    //         if (windowSize < 768) {
+    //             dispatch(changeLeftsidebarSizeType("lg"));
+    //         } else if (windowSize <= 1024) {
+    //             if (layoutType === "vertical") {
+    //                 dispatch(changeLeftsidebarSizeType("sm"));
+    //             } else {
+    //                 dispatch(changeLeftsidebarSizeType("lg"));
+    //             }
+    //         } else {
+    //             dispatch(changeLeftsidebarSizeType("lg"));
 
-                // dispatch(changeLeftsidebarSizeType(layoutSidebarSizeType === "sm" ? "lg" : "sm"));
-            }
-        }
+    //             // dispatch(changeLeftsidebarSizeType(layoutSidebarSizeType === "sm" ? "lg" : "sm"));
+    //         }
+    //     }
 
-        // out side click
-        const outerSideElement = () => {
-            var windowSize = document.documentElement.clientWidth;
-            var sidebarOverlay = document.getElementById("sidebar-overlay") as any;
-            if (sidebarOverlay) {
-                sidebarOverlay.addEventListener("click", () => {
-                    if (!sidebarOverlay.classList.contains("hidden")) {
+    //     // out side click
+    //     const outerSideElement = () => {
+    //         var windowSize = document.documentElement.clientWidth;
+    //         var sidebarOverlay = document.getElementById("sidebar-overlay") as any;
+    //         if (sidebarOverlay) {
+    //             sidebarOverlay.addEventListener("click", () => {
+    //                 if (!sidebarOverlay.classList.contains("hidden")) {
 
-                        if (windowSize <= 768) {
-                            document?.querySelector(".app-menu")?.classList.add("hidden");
-                            document.body.classList.remove("overflow-hidden");
-                            sidebarOverlay.classList.add("hidden");
-                        } else {
-                            dispatch(changeLeftsidebarSizeType("lg"));
-                        }
-                    }
-                });
-            }
-        }
+    //                     if (windowSize <= 768) {
+    //                         document?.querySelector(".app-menu")?.classList.add("hidden");
+    //                         document.body.classList.remove("overflow-hidden");
+    //                         sidebarOverlay.classList.add("hidden");
+    //                     } else {
+    //                         dispatch(changeLeftsidebarSizeType("lg"));
+    //                     }
+    //                 }
+    //             });
+    //         }
+    //     }
 
-        // scroll
-        const scrollNavigation = () => {
-            var scrollUp = document.documentElement.scrollTop;
-            if (scrollUp >= 50) {
-                document.getElementById("page-topbar")?.classList.add('is-sticky');
-            } else {
-                document.getElementById("page-topbar")?.classList.remove('is-sticky');
-            }
-        };
+    //     // scroll
+    //     const scrollNavigation = () => {
+    //         var scrollUp = document.documentElement.scrollTop;
+    //         if (scrollUp >= 50) {
+    //             document.getElementById("page-topbar")?.classList.add('is-sticky');
+    //         } else {
+    //             document.getElementById("page-topbar")?.classList.remove('is-sticky');
+    //         }
+    //     };
 
-        window.addEventListener('scroll', scrollNavigation, true);
-        window.addEventListener("click", outerSideElement);
-        window.addEventListener("resize", handleResizeLayout);
+    //     window.addEventListener('scroll', scrollNavigation, true);
+    //     window.addEventListener("click", outerSideElement);
+    //     window.addEventListener("resize", handleResizeLayout);
 
-        // Cleanup function to remove the event listeners
-        return () => {
-            window.removeEventListener('scroll', scrollNavigation, true);
-            window.removeEventListener("click", outerSideElement);
-            window.removeEventListener("resize", handleResizeLayout);
-        };
-    }, [layoutType, dispatch]);
+    //     // Cleanup function to remove the event listeners
+    //     return () => {
+    //         window.removeEventListener('scroll', scrollNavigation, true);
+    //         window.removeEventListener("click", outerSideElement);
+    //         window.removeEventListener("resize", handleResizeLayout);
+    //     };
+    // }, [layoutType, dispatch]);
 
     const selectProperties = createSelector(
         (state: any) => state.Profile,

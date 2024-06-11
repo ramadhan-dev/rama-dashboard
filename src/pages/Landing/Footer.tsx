@@ -99,49 +99,7 @@ const Footer = () => {
 
                     <div className="py-5 mt-20 border-y border-slate-700">
                         <div className="relative z-10 grid grid-cols-1 gap-5 md:grid-cols-12">
-                            <div className="md:col-span-2">
-                                <div className="relative dropdown">
-                                    <button type="button" className="inline-flex items-center gap-3 transition-all duration-200 ease-linear dropdown-toggle btn border-slate-700 group/items focus:border-custom-500" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                                        <img src={us} alt="" className="object-cover h-5 rounded-full" />
-                                        <h6 className="text-base font-medium transition-all duration-200 ease-linear text-slate-300 group-hover/items:text-custom-500">English</h6>
-                                    </button>
 
-                                    <div className="absolute z-50 hidden p-3 mt-1 text-left list-none bg-white rounded-md shadow-md dropdown-menu min-w-[9rem] flex flex-col gap-3 dark:bg-zink-600" aria-labelledby="dropdownMenuButton">
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={us} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">English</h6>
-                                        </a>
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={es} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">Spanish</h6>
-                                        </a>
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={de} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">German</h6>
-                                        </a>
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={fr} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">French</h6>
-                                        </a>
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={jp} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">Japanese</h6>
-                                        </a>
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={it} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">Italian</h6>
-                                        </a>
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={ru} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">Russian</h6>
-                                        </a>
-                                        <a href="#!" className="flex items-center gap-3 group/items">
-                                            <img src={ae} alt="" className="object-cover h-4 rounded-full" />
-                                            <h6 className="text-sm font-medium transition-all duration-200 ease-linear text-slate-600 dark:text-zink-100 group-hover/items:text-custom-500 dark:group-hover/items:text-custom-500">Arabic</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="md:col-span-3 md:col-start-10">
                                 <ul className="flex items-center gap-3 md:justify-end">
                                     <li>

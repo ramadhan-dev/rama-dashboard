@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { authProtectedRoutes, publicRoutes } from './allRoutes';
 import Layout from '#/Layout';
@@ -16,36 +16,27 @@ const RouteIndex = () => {
 						element={
 							<AuthProtected>
 								<Layout>
-									<route.component />
+									<Suspense fallback={<>loading...</>}>
+										<route.component />
+									</Suspense>
 								</Layout>
 							</AuthProtected>
 						}
 					/>
 				))}
 				{publicRoutes.map((route: any, idx: number) => {
-					// if (route?.path !== '/login') {
-					// 	return (
-					// 		<Route
-					// 			path={route.path}
-					// 			key={idx}
-					// 			element={
-					// 				<NonAuthLayout>
-					// 					<route.component />
-					// 				</NonAuthLayout>
-					// 			} />
-					// 	)
-					// } else {
 						return (
 							<Route
 								path={route.path}
 								key={idx}
 								element={
 									<NonAuthLayout>
-										<route.component />
+										<Suspense fallback={<>loading...</>}>
+											<route.component />
+										</Suspense>
 									</NonAuthLayout>
 								} />
 						)
-					// }
 				})}
 			</Routes>
 		</React.Fragment>

@@ -57,7 +57,7 @@ const PaginationComponent: React.FC<IPaginationComponent> = ({ tableLib, Paginat
 	 * init pagination
 	 */
 	useEffect(() => {
-		const pagination = generatePageItems(totalPagination, pageIndex, 11)
+		const pagination = generatePageItems(totalPagination, pageIndex, 9)
 		setItemPagination(pagination)
 		setCurrentPage(pageIndex)
 	}, [pageIndex, totalData])
