@@ -15,15 +15,15 @@ import ProfileReducer from "./auth/profile/reducer";
 // userProfile
 import EcommerceReducer from "./ecommerce/reducer";
 
-const rootReducer = combineReducers({
+import ProvinceReducer from "./administrative/province/reducer";
+
+
+
+export const rootReducer:any = combineReducers({
     Layout: LayoutReducer,
     Login: LoginReducer,
     Register: RegisterReducer,
     Profile: ProfileReducer,
-		Ecommerce: EcommerceReducer
+		Ecommerce: EcommerceReducer,
+		Province: ProvinceReducer
 });
-
-
-export type RootState = ReturnType<typeof rootReducer>;
-
-export default rootReducer;

@@ -2,7 +2,6 @@ import React from 'react';
 import { Sun } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeLayoutMode, changeLayoutTopbarColor, changeLeftSidebarColorType } from '#/slices/thunk';
-import { createSelector } from '@reduxjs/toolkit';
 
 const LightDark = () => {
 
@@ -13,17 +12,9 @@ const LightDark = () => {
         dispatch(changeLeftSidebarColorType(mode));
         dispatch(changeLayoutTopbarColor(mode));
     };
+	const Layout = useSelector((state: any) => state?.masterState?.Layout);
 
-    // react-redux
-    const selectLayoutState = (state: any) => state.Layout;
-    const selectLayoutProperties = createSelector(
-        selectLayoutState,
-        (layout: any) => ({
-            layoutModeType: layout.layoutModeType,
-        })
-    );
-
-    const { layoutModeType } = useSelector(selectLayoutProperties);
+	const { layoutModeType } = Layout;
 
     const mode = layoutModeType === "dark" ? "light" : "dark";
 

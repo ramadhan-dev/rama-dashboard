@@ -19,7 +19,7 @@ import {
   changeNavigation,
   changeLeftSidebarColorType,
   changeLayoutTopbarColor
-} from "#/slices/thunk";
+} from "../slices/thunk";
 
 const Layout = ({ children }: any) => {
 
@@ -32,23 +32,7 @@ const Layout = ({ children }: any) => {
 
   const [show, setShow] = React.useState<boolean>(false);
   const handleDrawer = () => setShow(!show);
-
-  const selectLayoutState = (state: any) => state.Layout;
-  const selectLayoutProperties = createSelector(
-    selectLayoutState,
-    (layout) => ({
-      layoutType: layout.layoutType,
-      layoutSemiDarkType: layout.layoutSemiDarkType,
-      layoutSkintype: layout.layoutSkintype,
-      layoutModeType: layout.layoutModeType,
-      layoutDirectionType: layout.layoutDirectionType,
-      layoutContentWidthType: layout.layoutContentWidthType,
-      layoutSidebarSizeType: layout.layoutSidebarSizeType,
-      layoutNavigationType: layout.layoutNavigationType,
-      layoutSidebarColorType: layout.layoutSidebarColorType,
-      layoutTopbarColorType: layout.layoutTopbarColorType,
-    })
-  );
+	const selector = useSelector((state:any) => state?.masterState?.Layout);
   // Inside your component
   const {
     layoutType,
@@ -61,7 +45,7 @@ const Layout = ({ children }: any) => {
     layoutNavigationType,
     layoutSidebarColorType,
     layoutTopbarColorType
-  } = useSelector(selectLayoutProperties);
+	} = selector;
 
   /*
     layout settings

@@ -1,86 +1,63 @@
-import { postFakeLogin } from "#/helpers/fakebackend_helper";
 import { loginError, loginSuccess, logoutSuccess } from "./reducer";
-import { ThunkAction } from "redux-thunk";
-import { Action, Dispatch } from "redux";
-import { RootState } from "#/slices";
-import { getFirebaseBackend } from "#/helpers/firebase_helper";
-import { VITE_DEFAULTAUTH } from "#/Common/constants/env";
+import { Dispatch } from "redux";
+import { Login } from "#/helpers/apis/auth/auth_api";
+import { removeAccessToken, setAccessToken } from "#/helpers/jwt-token-access/accessToken";
+import { setAuthorization } from "#/helpers/api_helper";
 
 interface User {
-    email: string;
-    password: string;
+	email: string;
+	password: string;
 }
 
-export const loginUser = (
-    user: User,
-    history: any
-): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch: Dispatch) => {
-    try {
-        let response: any;
-        if (VITE_DEFAULTAUTH === "fake") {
+export const loginUser = (user: User, history: any) => async (dispatch: Dispatch) => {
+	try {
+		let response: any;
+		response = await Login({
+			email: user.email,
+			password: user.password,
+		})
+			.then((data: any) => {
+				setAccessToken('KEY', data?.token)
+				setAuthorization(data?.token)
+				return data;
+			})
 
-            response = await postFakeLogin({
-                email: user.email,
-                password: user.password,
-            });
 
-            localStorage.setItem("authUser", JSON.stringify(response));
 
-        } else if (VITE_DEFAULTAUTH === "firebase") {
-            let fireBaseBackend = await getFirebaseBackend();
-
-            response = await fireBaseBackend.loginUser(
-                user.email,
-                user.password
-            )
-        }
-
-        if (response) {
-            dispatch(loginSuccess(response));
-            history("/dashboard");
-        }
-    } catch (error) {
-
-        dispatch(loginError(error));
-    }
+		if (response) {
+			dispatch(loginSuccess(response));
+			history("/dashboard");
+		}
+	} catch (error: any) {
+		dispatch(loginError(error?.data?.data));
+	}
 };
 
+
+/**
+ *
+ * @returns
+ */
 export const logoutUser = () => async (dispatch: Dispatch) => {
-    try {
-        localStorage.removeItem("authUser");
-
-        let fireBaseBackend = await getFirebaseBackend();
-
-        if (VITE_DEFAULTAUTH === "firebase") {
-            const response = fireBaseBackend.logout;
-            dispatch(logoutSuccess(response));
-        } else {
-            dispatch(logoutSuccess(true));
-        }
-    } catch (error) {
-        dispatch(loginError(error));
-    }
+	try {
+		removeAccessToken('KEY');
+		dispatch(logoutSuccess(true));
+	} catch (error) {
+		dispatch(loginError(error));
+	}
 }
 
 
+/**
+ *
+ * @param type
+ * @param history
+ * @returns
+ */
 export const socialLogin = (type: any, history: any) => async (dispatch: any) => {
-    try {
-        let response: any;
+	try {
 
-        if (VITE_DEFAULTAUTH === "firebase") {
-            const fireBaseBackend = getFirebaseBackend();
-            response = fireBaseBackend.socialLoginUser(type);
-        }
-
-        const socialData = await response;
-
-        if (socialData) {
-            sessionStorage.setItem("authUser", JSON.stringify(socialData));
-            dispatch(loginSuccess(socialData));
-            history('/dashboard');
-        }
-
-    } catch (error) {
-        dispatch(loginError(error));
-    }
+	} catch (error) {
+		dispatch(loginError(error));
+	}
 }

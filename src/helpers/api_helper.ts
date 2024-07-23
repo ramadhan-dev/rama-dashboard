@@ -1,37 +1,38 @@
 import axios from "axios";
+import { getAccessToken } from "./jwt-token-access/accessToken";
 // import { api } from "../config";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "";
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
-// Set Token
-const authUser: any = localStorage.getItem("authUser")
-const token = JSON.parse(authUser) ? JSON.parse(authUser).token : null;
-if (token) axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+// content type
+const authUser: any = getAccessToken('KEY')
+const token = authUser ? authUser : null;
+if (token) axios.defaults.headers.common["token"] = token;
 
 // intercepting to capture errors
 axios.interceptors.response.use(
-  function (response) {
+	function (response) {
     return response.data ? response.data : response;
   },
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     let message;
-    switch (error.status) {
+		switch (error?.response?.status) {
       case 500:
-        message = "Internal Server Error";
+				message = error?.response;
         break;
       case 401:
-        message = "Invalid credentials";
+				message = error?.response;
         break;
       case 404:
         message = "Sorry! the data you are looking for could not be found";
         break;
       default:
         message = error.message || error;
-    }
-    return Promise.reject(message);
+			}
+			return Promise.reject(message);
   }
 );
 /**
@@ -39,17 +40,28 @@ axios.interceptors.response.use(
  * @param {*} token
  */
 const setAuthorization = (token: any) => {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  axios.defaults.headers.common["token"] =  token;
 };
 
+const getLoggedUser = () => {
+
+	const user = localStorage.getItem("authUser");
+	if (!user) {
+		return null;
+	} else {
+		return JSON.parse(user);
+	}
+};
+
+
+/**
+ * setup Axios
+ */
 class APIClient {
   /**
    * Fetches data from given url
    */
 
-  //  get = (url, params) => {
-  //   return axios.get(url, params);
-  // };
   get = (url: any, params: any) => {
     let response;
 
@@ -73,7 +85,7 @@ class APIClient {
    * post given data to url
    */
   create = (url: any, data: any) => {
-    return axios.post(url, data);
+    return axios.post(url, data)
   };
   /**
    * Updates data
@@ -92,14 +104,6 @@ class APIClient {
     return axios.delete(url, { ...config });
   };
 }
-const getLoggedUser = () => {
 
-  const user = localStorage.getItem("authUser");
-  if (!user) {
-    return null;
-  } else {
-    return JSON.parse(user);
-  }
-};
 
 export { APIClient, setAuthorization, getLoggedUser };

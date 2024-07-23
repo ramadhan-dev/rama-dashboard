@@ -1,3 +1,5 @@
+import { setAuthorization } from "#/helpers/api_helper";
+import { getAccessToken } from "#/helpers/jwt-token-access/accessToken";
 import React, { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -6,9 +8,12 @@ interface AuthProtectedProps {
 }
 
 const AuthProtected: React.FC<AuthProtectedProps> = ({ children }) => {
-  if (!localStorage.getItem("authUser")) {
-		return <Navigate to="/landing" />;
-  }
+
+  if (getAccessToken('KEY') === undefined) {
+    return <Navigate to={{ pathname: "/login" }} />;
+  } else{
+		setAuthorization(getAccessToken('KEY'))
+	}
 
   return <React.Fragment>{children}</React.Fragment>;
 };

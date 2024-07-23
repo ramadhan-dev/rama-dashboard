@@ -13,7 +13,6 @@ import { createSelector } from 'reselect';
 import BreadCrumb from "#/Common/BreadCrumb";
 import withRouter from "#/Common/withRouter";
 import { editProfile } from "#/slices/thunk";
-import { VITE_DEFAULTAUTH } from "#/Common/constants/env";
 
 const UserProfile = () => {
 
@@ -38,11 +37,11 @@ const UserProfile = () => {
   const { error, success, user } = useSelector(selectProperties);
 
   useEffect(() => {
-    if (VITE_DEFAULTAUTH === "fake") {
+    if (process.env.REACT_APP_DEFAULTAUTH === "fake") {
       setEmail(user.email)
       setName(user.username);
       setIdx(user.uid)
-    } else if (VITE_DEFAULTAUTH === "firebase") {
+    } else if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
       setEmail(user.email)
       setName(user.username);
       setIdx(user.uid)

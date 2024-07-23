@@ -11,7 +11,7 @@ const createUser = () => {
 	};
 };
 
-const EPISODES = faker.helpers.multiple(createUser, { count: 1000 })
+const dt = faker.helpers.multiple(createUser, { count: 1000 })
 
 
 
@@ -20,7 +20,7 @@ export function mockAPI({
 	sort: { field = "id", order = "ASC" } = {},
 } = {}) {
 	const episodes = [
-		...EPISODES.sort((a:any, b:any) => {
+		...dt.sort((a:any, b:any) => {
 			const [first, second] =
 				order === "ASC" ? [a[field], b[field]] : [b[field], a[field]];
 			if (typeof first === "string" && typeof second === "string") {
@@ -34,7 +34,7 @@ export function mockAPI({
 
 	const res = new Promise((resolve) => {
 		timeoutId = setTimeout(() => {
-			resolve([episodes, EPISODES.length]);
+			resolve([episodes, dt.length]);
 		}, 1000);
 	});
 

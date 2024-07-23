@@ -4,6 +4,7 @@ import { logoutUser } from "#/slices/thunk";
 import { Navigate } from "react-router-dom";
 import { RootState } from "#/slices";
 import { createSelector } from 'reselect';
+import { getAccessToken } from "#/helpers/jwt-token-access/accessToken";
 
 interface selectLogoutState {
     isUserLogout: boolean;

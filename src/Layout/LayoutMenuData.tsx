@@ -1,4 +1,4 @@
-import { MonitorCheck, MonitorDot } from "lucide-react";
+import { MonitorCheck, FileArchive, MonitorDot } from "lucide-react";
 
 const menuData: any = [
 	{
@@ -12,36 +12,51 @@ const menuData: any = [
 		link: '/dashboard',
 		parentId: 1
 	},
+
 	{
 		id: "master-data",
 		label: 'Data Master',
 		link: "#",
-		icon: <MonitorDot />,
+		icon: <FileArchive />,
 		subItems: [
 			{
-				id: 'data-master-province',
-				label: 'province',
-				link: '/data-master/province',
-				parentId: "data-master"
+				id: 'level1',
+				label: 'Level 1.1',
+				link: '/#',
+				parentId: "master-data"
 			},
 			{
-				id: 'data-master-city',
-				label: 'City',
-				link: '/data-master/city',
-				parentId: "data-master"
-			},
-			{
-				id: 'data-master-district',
-				label: 'district',
-				link: '/data-master/district',
-				parentId: "data-master"
-			},
-			{
-				id: 'data-master-sub-district',
-				label: 'sub-district',
-				link: '/data-master/sub-district',
-				parentId: "data-master"
-			},
+				id: 'administratif',
+				label: 'Administratif',
+				link: '/',
+				parentId: "master-data",
+				subItems: [
+							{
+								id: 'administratif-province',
+								label: 'province',
+								link: '/data-master/province',
+								parentId: "administratif"
+							},
+							{
+								id: 'administratif-city',
+								label: 'City',
+								link: '/data-master/city',
+								parentId: "administratif"
+							},
+							{
+								id: 'administratif-district',
+								label: 'district',
+								link: '/data-master/district',
+								parentId: "administratif"
+							},
+							{
+								id: 'administratif-sub-district',
+								label: 'sub-district',
+								link: '/data-master/sub-district',
+								parentId: "administratif"
+							},
+				]
+			}
 		]
 	},
 ];

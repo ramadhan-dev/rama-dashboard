@@ -5,7 +5,7 @@ import Modal from "./Components/Modal";
 import { X } from 'lucide-react';
 
 // Image
-import deleteImg from "#/assets/images/delete.png";
+import deleteImg from "assets/images/delete.png";
 
 interface props {
     show: boolean;

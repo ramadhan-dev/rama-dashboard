@@ -1,10 +1,9 @@
-import { getCounter, getOrderStatistics, getSalesRevenues } from "#/helpers/fakebackend_helper";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 export const getCounters = createAsyncThunk("ecommerce/getCounters", async () => {
 	try {
-		const response = getCounter();
+		const response:[] = [];
 		return response;
 	} catch (error) {
 		return error;
@@ -18,7 +17,7 @@ export const getCounters = createAsyncThunk("ecommerce/getCounters", async () =>
  */
 export const getOrderStatistic = createAsyncThunk("ecommerce/getOrderStatistics", async () => {
 	try {
-		const response = getOrderStatistics();
+		const response: [] = [];
 		return response;
 	} catch (error) {
 		return error;
@@ -30,7 +29,7 @@ export const getOrderStatistic = createAsyncThunk("ecommerce/getOrderStatistics"
  */
 export const getSalesRevenue = createAsyncThunk("ecommerce/getSalesRevenue", async () => {
 	try {
-		const response = getSalesRevenues();
+		const response: [] = [];
 		return response;
 	} catch (error) {
 		return error;

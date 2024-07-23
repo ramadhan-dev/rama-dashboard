@@ -1,6 +1,5 @@
 import React, { createContext, useContext, ReactNode, ElementType, useRef, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BASE_URL } from '../constants/env';
 interface DropdownContextType {
   toggleOpen: any;
 }
@@ -110,7 +109,7 @@ const Dropdown = ({ as: Component = 'div', children, className, id, subitemId }:
 
   const currentPath = useLocation();
   const initActiveMenu = useCallback(() => {
-    const pathName = BASE_URL + currentPath.pathname;
+    const pathName =  currentPath.pathname;
     const ul: any = document.getElementById("navbar-nav");
     const items = ul.getElementsByTagName("a");
     let itemsArray = [...items]; // converts NodeList to Array

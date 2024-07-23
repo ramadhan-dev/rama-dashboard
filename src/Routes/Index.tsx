@@ -6,41 +6,39 @@ import NonAuthLayout from "#/Layout/NonLayout"
 import AuthProtected from './AuthProtected';
 
 const RouteIndex = () => {
-	return (
-		<React.Fragment>
-			<Routes>
-				{authProtectedRoutes.map((route: any, idx: number) => (
-					<Route
-						key={idx}
-						path={route.path}
-						element={
-							<AuthProtected>
-								<Layout>
+  return (
+    <React.Fragment>
+      <Routes>
+        {authProtectedRoutes.map((route: any, idx: number) => (
+          <Route
+            key={idx}
+            path={route.path}
+            element={
+              <AuthProtected>
+                <Layout>
 									<Suspense fallback={<>loading...</>}>
 										<route.component />
 									</Suspense>
-								</Layout>
-							</AuthProtected>
-						}
-					/>
-				))}
-				{publicRoutes.map((route: any, idx: number) => {
-						return (
-							<Route
-								path={route.path}
-								key={idx}
-								element={
-									<NonAuthLayout>
-										<Suspense fallback={<>loading...</>}>
-											<route.component />
-										</Suspense>
-									</NonAuthLayout>
-								} />
-						)
-				})}
-			</Routes>
-		</React.Fragment>
-	);
+                </Layout>
+              </AuthProtected>
+            }
+          />
+        ))}
+        {publicRoutes.map((route: any, idx: number) => (
+          <Route
+            path={route.path}
+            key={idx}
+            element={
+              <NonAuthLayout>
+								<Suspense fallback={<>loading...</>}>
+									<route.component />
+								</Suspense>
+              </NonAuthLayout>
+            } />
+        ))}
+      </Routes>
+    </React.Fragment>
+  );
 };
 
 export default RouteIndex;

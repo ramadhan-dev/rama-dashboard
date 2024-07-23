@@ -1,35 +1,23 @@
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "#/slices";
 import { Action, Dispatch } from "redux";
-import { postFakeRegister } from "#/helpers/fakebackend_helper";
 import { registerFailed, registerSuccess, resetRegister } from "./reducer";
-import { getFirebaseBackend } from "#/helpers/firebase_helper";
-import { VITE_DEFAULTAUTH } from "#/Common/constants/env";
+import { User } from "#/interfaces/common";
+import { Register } from "#/helpers/apis/auth/auth_api";
 
-interface User {
-    email: string;
-    username: string;
-    password: string;
-}
+
 
 export const registerUser = (user: User
 ): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch: Dispatch) => {
     try {
-        let response: any;
-        if (VITE_DEFAULTAUTH === "fake") {
-            response = await postFakeRegister(user);
-        } else if (VITE_DEFAULTAUTH === "firebase") {
-            
-            // initialize relevant method of both Auth
-            const fireBaseBackend = getFirebaseBackend();
+				let response: any;
+				response = await Register(user);
 
-            response = fireBaseBackend.registerUser(user.email, user.password);
-        }
         if (response) {
             dispatch(registerSuccess(response));
         }
-    } catch (error) {
-        dispatch(registerFailed(error));
+    } catch (error:any) {
+			dispatch(registerFailed(error?.data?.data));
     }
 };
 

@@ -27,7 +27,7 @@ export interface LayoutState {
 }
 
 export const initialState: LayoutState = {
-  layoutType: LAYOUT_TYPES.VERTICAL,
+	layoutType: LAYOUT_TYPES.VERTICAL,
   layoutSemiDarkType: LAYOUT_SEMI_DARK.LIGHT,
   layoutSkintype: LAYOUT_SKIN.DEFAULT,
   layoutModeType: LAYOUT_MODE_TYPES.LIGHTMODE,

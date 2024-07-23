@@ -1,3 +1,39 @@
-const accessToken =
-  "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiYWRtaW4iOnRydWUsImp0aSI6ImQ2MTEwYzAxLWMwYjUtNDUzNy1iNDZhLTI0NTk5Mjc2YjY1NiIsImlhdCI6MTU5MjU2MDk2MCwiZXhwIjoxNTkyNTY0NjE5fQ.QgFSQtFaK_Ktauadttq1Is7f9w0SUtKcL8xCmkAvGLw"
-export default accessToken
+import secureLocalStorage from "react-secure-storage";
+
+
+const getAccessToken = (KEY:string) => {
+	if (!localStorage) return
+	const lsValue: any = secureLocalStorage.getItem(btoa(KEY))
+	if (!lsValue) return
+
+	try {
+		return lsValue
+	} catch (error) {
+		console.error(' LOCAL STORAGE ERROR', error)
+	}
+
+}
+
+const setAccessToken = (KEY:string, data:any) => {
+	if (!localStorage) return
+	try {
+		secureLocalStorage.setItem(btoa(KEY), data);
+	} catch (error) {
+		console.error(' LOCAL STORAGE SAVE ERROR', error)
+	}
+}
+
+const removeAccessToken = (KEY: string) => {
+	if (!localStorage) return
+	try {
+		secureLocalStorage.removeItem(btoa(KEY));
+	} catch (error) {
+		console.error(' LOCAL STORAGE REMOVE ERROR', error)
+	}
+}
+
+export {
+	getAccessToken,
+	setAccessToken,
+	removeAccessToken
+}

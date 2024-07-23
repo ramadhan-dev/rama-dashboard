@@ -18,14 +18,11 @@ const Ecommerce = () => {
 		<React.Fragment>
 			<BreadCrumb title='' pageTitle='Dashboards' />
 
-			{/* Welcome Message */}
-			<WelcomeComponent />
+			{/* <WelcomeComponent />
 
-			{/* Counter Data */}
 			<CounterComponent />
 
 
-			{/* Grafik Data */}
 			<div className="grid grid-cols-12 gap-x-5">
 
 				<OrderStatisticComponent />
@@ -36,11 +33,11 @@ const Ecommerce = () => {
 
 			</div>
 
-		{/*  */}
-			<ProductOrderComponent />
+			<ProductOrderComponent /> */}
 
 		</React.Fragment>
 	);
 };
 
-export default Ecommerce;
+const MemoEcommerce = React.memo(Ecommerce)
+export { MemoEcommerce as default} ;

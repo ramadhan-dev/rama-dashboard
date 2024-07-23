@@ -19,3 +19,5 @@ export * from "./auth/register/thunk";
 export * from "./auth/profile/thunk";
 
 export * from "./ecommerce/thunk";
+
+export * from "./administrative/province/thunk";
