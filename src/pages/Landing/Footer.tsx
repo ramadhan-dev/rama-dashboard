@@ -121,7 +121,7 @@ const Footer = () => {
 
 					<div className="mt-12 text-center text-slate-400 dark:text-zink-200 text-16">
 						<p>
-							{new Date().getFullYear()} © Tailwick. Design & Develop by <a href="#!" className="underline text-slate-300 dark:text-zink-100">Themesdesign</a>
+							{new Date().getFullYear()} © ramadhan. Design & Develop by <a href="#!" className="underline text-slate-300 dark:text-zink-100">Themesdesign</a>
 						</p>
 					</div>
 				</div>

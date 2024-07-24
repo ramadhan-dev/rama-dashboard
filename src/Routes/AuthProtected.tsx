@@ -1,3 +1,4 @@
+import { ACCESS_KEY } from "#/Common/constants/env";
 import { setAuthorization } from "#/helpers/api_helper";
 import { getAccessToken } from "#/helpers/jwt-token-access/accessToken";
 import React, { ReactNode } from "react";
@@ -8,11 +9,12 @@ interface AuthProtectedProps {
 }
 
 const AuthProtected: React.FC<AuthProtectedProps> = ({ children }) => {
+	console.log("🚀 ~ getAccessToken(ACCESS_KEY):", getAccessToken(ACCESS_KEY))
 
-  if (getAccessToken('KEY') === undefined) {
+  if (getAccessToken(ACCESS_KEY) === undefined) {
     return <Navigate to={{ pathname: "/login" }} />;
   } else{
-		setAuthorization(getAccessToken('KEY'))
+		setAuthorization(getAccessToken(ACCESS_KEY))
 	}
 
   return <React.Fragment>{children}</React.Fragment>;

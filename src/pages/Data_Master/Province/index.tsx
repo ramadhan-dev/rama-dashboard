@@ -3,35 +3,30 @@ import BreadCrumb from "#/Common/BreadCrumb";
 import Modal from "#/Common/Components/Modal";
 import { Province } from "#/interfaces/common";
 import { Plus } from "lucide-react";
-import React, { lazy, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
 import * as Yup from "yup";
 import { useFormik as useFormic } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "@reduxjs/toolkit";
-import { CreateProvince } from "#/slices/thunk";
+import { doLogin } from "#/pages/Authentication/store/login.asyncAction";
 
 const ProvinceComponent = () => {
 	const [show, setShow] = useState<boolean>(false);
 	const [edit, setEdit] = useState<boolean>(false);
 
 	const dispatch = useDispatch<any>();
-	const selector = useSelector((state) => {
-		console.log(state);
-
-	});
+	const {error, success} = useSelector((state:any) => state?.masterState?.Login);
 
 	// const { success, error } = useSelector(provinceSelector)
 	// console.log("🚀 ~ ProvinceComponent ~ success:", success)
 
-	// React.useEffect(() => {
-	// 	console.log("🚀 ~ React.useEffect ~ success:", success)
-	// 	if (success) {
-	// 		setShow((prev) => !prev);
-	// 	}
-	// }, [success]);
+	React.useEffect(() => {
+		if (success) {
+			setShow((prev) => !prev);
+		}
+	}, [success]);
 
 
 	const initialValues: Province = {
@@ -48,7 +43,7 @@ const ProvinceComponent = () => {
 			name: Yup.string().required("Please Enter Your Province Name"),
 		}),
 		onSubmit: (values: any) => {
-			dispatch(CreateProvince(values));
+			dispatch(doLogin(values));
 		}
 	});
 
@@ -83,9 +78,9 @@ const ProvinceComponent = () => {
 					<Modal.Title className="text-16">{edit ? "Edit Province" : "Add Province"}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
-					{/* {error && <div className="px-4 py-3 mb-3 text-sm text-red-500 border border-red-200 rounded-md bg-red-50 dark:bg-red-400/20 dark:border-red-500/50" id="successAlert">
+					{error && <div className="px-4 py-3 mb-3 text-sm text-red-500 border border-red-200 rounded-md bg-red-50 dark:bg-red-400/20 dark:border-red-500/50" id="successAlert">
 						{error}
-					</div>} */}
+					</div>}
 
 					<form action="/" className="mt-10" id="registerForm"
 						onSubmit={(event: any) => {

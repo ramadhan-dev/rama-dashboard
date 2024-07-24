@@ -72,7 +72,7 @@ const LayoutSlice = createSlice({
     },
     changeLayoutTopbarColorAction(state: any, action: any) {
       state.layoutTopbarColorType = action.payload;
-    }
+    },
   }
 });
 

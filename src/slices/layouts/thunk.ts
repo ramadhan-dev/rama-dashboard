@@ -55,7 +55,7 @@ export const changeSkin = (skinTheme: any) => async (dispatch: any) => {
 };
 
 /**
- * Changes the layout mode 
+ * Changes the layout mode
  * @param {*} param0
  */
 export const changeLayoutMode = (layoutMode: any) => async (dispatch: any) => {

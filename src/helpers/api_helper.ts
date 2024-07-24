@@ -1,22 +1,28 @@
 import axios from "axios";
 import { getAccessToken } from "./jwt-token-access/accessToken";
+import { ACCESS_KEY } from "#/Common/constants/env";
+import { useSelector } from "react-redux";
 // import { api } from "../config";
-
 axios.defaults.baseURL = "";
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // content type
-const authUser: any = getAccessToken('KEY')
+const authUser: any = getAccessToken(ACCESS_KEY)
 const token = authUser ? authUser : null;
 if (token) axios.defaults.headers.common["token"] = token;
 
 // intercepting to capture errors
 axios.interceptors.response.use(
 	function (response) {
+		console.log(false);
+
     return response.data ? response.data : response;
   },
   function (error) {
+		console.log("🚀 ~ axios.interceptors.request.use ~ error:", error)
+
+
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     let message;
 		switch (error?.response?.status) {
@@ -26,8 +32,11 @@ axios.interceptors.response.use(
       case 401:
 				message = error?.response;
         break;
-      case 404:
-        message = "Sorry! the data you are looking for could not be found";
+			case 404:
+			case 400:
+			case 409:
+				// message = "Sorry! the data you are looking for could not be found";
+				message = error?.response?.data;
         break;
       default:
         message = error.message || error;

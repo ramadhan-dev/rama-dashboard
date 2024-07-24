@@ -15,7 +15,7 @@ const AboutUs = () => {
             <section className="relative py-32" id="about">
                 <div className="container 2xl:max-w-[87.5rem] px-4 mx-auto">
                     <div className="mx-auto text-center xl:max-w-3xl">
-                        <h1 className="mb-6 leading-normal capitalize">Why Developers Should Embrace <span className="relative inline-block px-2 mx-2 before:block before:absolute before:-inset-1 before:-skew-y-6 before:bg-sky-50 dark:before:bg-sky-500/20 before:rounded-md before:backdrop-blur-xl"><span className="relative text-sky-500">Tailwick</span></span></h1>
+                        <h1 className="mb-6 leading-normal capitalize">Why Developers Should Embrace <span className="relative inline-block px-2 mx-2 before:block before:absolute before:-inset-1 before:-skew-y-6 before:bg-sky-50 dark:before:bg-sky-500/20 before:rounded-md before:backdrop-blur-xl"><span className="relative text-sky-500">ramadhan</span></span></h1>
                         <p className="text-lg text-slate-500 dark:text-zink-200">The purpose of developer communities is to provide the resources for developers to learn anything they want to.</p>
                     </div>
 

@@ -4,10 +4,7 @@ import { combineReducers } from "redux";
 import LayoutReducer from "./layouts/reducer";
 
 // login
-import LoginReducer from "./auth/login/reducer";
-
-// register
-import RegisterReducer from "./auth/register/reducer";
+import { loginReducer } from "#/pages/Authentication/store/login.slice";
 
 // userProfile
 import ProfileReducer from "./auth/profile/reducer";
@@ -19,11 +16,10 @@ import ProvinceReducer from "./administrative/province/reducer";
 
 
 
-export const rootReducer:any = combineReducers({
-    Layout: LayoutReducer,
-    Login: LoginReducer,
-    Register: RegisterReducer,
-    Profile: ProfileReducer,
-		Ecommerce: EcommerceReducer,
-		Province: ProvinceReducer
+export const rootReducer: any = combineReducers({
+	Layout: LayoutReducer,
+	Auth: loginReducer,
+	Profile: ProfileReducer,
+	Ecommerce: EcommerceReducer,
+	Province: ProvinceReducer
 });

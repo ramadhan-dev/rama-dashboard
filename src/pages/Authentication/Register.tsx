@@ -2,45 +2,33 @@ import React from "react";
 import AuthIcon from "#/pages/AuthenticationInner/AuthIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser, resetRegisterFlag } from "#/slices/thunk";
-import { createSelector } from 'reselect';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 // Formik validation
 import * as Yup from "yup";
 import { useFormik as useFormic } from "formik";
 
 // Image
-import { RootState } from "#/slices";
 import { User } from "#/interfaces/common";
+import { doLogin, RegisterUser } from "./store/login.asyncAction";
 
 const Register = () => {
 
-	document.title = "Register | Tailwick - React Admin & Dashboard Template";
+	document.title = "Register | React Admin & Dashboard Template";
 
-	const dispatch = useDispatch<any>();
 	const navigation = useNavigate(); // Use the useNavigate hook
-
-	const selectRegister = createSelector(
-		(state: RootState) => state.Register,
-		(register) => ({
-			success: register.success,
-			error: register.error
-
-		})
-	)
-
-	const { success, error } = useSelector(selectRegister)
+	const dispatch = useDispatch<any>();
+	const { success, error, loginSuccess, loading } = useSelector((state: any) => state?.masterState?.Auth);
 
 	const initialValues: User = {
-		firstName: "",
-		lastName: "",
-		email: "",
-		password: "",
+		firstName: "3",
+		lastName: "2",
+		email: "local.dev002@gmail.com",
+		password: "2",
 		role: "admin",
 	}
 
 	const validation: any = useFormic({
-		// enableReinitialize : use this flag when initial values needs to be changed
 		enableReinitialize: true,
 		initialValues,
 		validationSchema: Yup.object({
@@ -50,22 +38,21 @@ const Register = () => {
 			password: Yup.string().required("Please Enter Your Password"),
 		}),
 		onSubmit: (values: any) => {
-			dispatch(registerUser(values));
+			dispatch(RegisterUser(values));
 		}
 	});
 
 	React.useEffect(() => {
-
 		if (success) {
-			navigation('/login')
+			const {values} = validation
+			dispatch(doLogin({ email: values?.email, password: values?.password, role: values?.role}));
 		}
-
-		setTimeout(() => {
-			dispatch(resetRegisterFlag());
-		}, 3000);
-
 	}, [dispatch, success, navigation]);
 
+
+	/**
+	 *
+	 */
 	React.useEffect(() => {
 		const bodyElement = document.body;
 
@@ -76,10 +63,19 @@ const Register = () => {
 		}
 	}, []);
 
+
+	/**
+	 *
+	 */
+	if (loginSuccess) return <Navigate to="/dashboard" replace={true} />
+
+
+	/**
+	 *
+	 */
 	return (
 		<React.Fragment>
 			<div className="relative">
-
 				<AuthIcon />
 
 				<div className="mb-0 w-screen lg:w-[500px] card shadow-lg border-none shadow-slate-100 relative">
@@ -168,10 +164,17 @@ const Register = () => {
 									<div id="password-error" className="mt-1 text-sm text-red-500">{validation.errors.password}</div>
 								) : null}
 							</div>
-							<p className="italic text-15 text-slate-500 dark:text-zink-200">By registering you agree to the Tailwick <a href="#!" className="underline">Terms of Use</a></p>
+							<p className="italic text-15 text-slate-500 dark:text-zink-200">By registering you agree to the <a href="#!" className="underline">Terms of Use</a></p>
 							<div className="mt-10">
-								<button type="submit" className="w-full text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Sign In</button>
+								<button
+									type="submit"
+									className={`btn-horizontal-primary ${loading ? 'cursor-not-allowed' : 'pointer'}`}
+									disabled={loading}
+								>
+									{loading ? 'Loading...' : 'Sign In'}
+								</button>
 							</div>
+
 
 							<div className="mt-10 text-center">
 								<p className="mb-0 text-slate-500 dark:text-zink-200">Already have an account ? <Link to="/login" className="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Login</Link> </p>

@@ -9,7 +9,7 @@ const Contact = () => {
                 <div className="container 2xl:max-w-[87.5rem] px-4 mx-auto">
                     <div className="grid items-center grid-cols-1 gap-5 lg:grid-cols-12">
                         <div className="lg:col-span-9">
-                            <h1 className="mb-4 leading-normal capitalize text-custom-50">Ready to get started with Tailwick</h1>
+                            <h1 className="mb-4 leading-normal capitalize text-custom-50">Ready to get started with ramadhan</h1>
                             <p className="text-lg text-custom-200">Tell us which describes you, and we'll get in touch with next steps.</p>
                         </div>
                         <div className="ltr:lg:text-right rtl:lg:text-left lg:col-span-3">

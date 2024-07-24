@@ -1,9 +1,21 @@
-export interface User {
+
+interface masterUser {
 	email: string;
 	firstName: string;
 	lastName: string;
-	password: string;
 	role: string;
+}
+
+export interface User extends masterUser {
+	password: string;
+}
+
+
+export interface Profile extends masterUser {
+	createdAt: string
+	updatedAt:string
+	id:string
+	isBanned:boolean
 }
 
 

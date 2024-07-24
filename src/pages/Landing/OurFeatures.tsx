@@ -35,7 +35,7 @@ const OurFeatures = () => {
                         </div>
                     </div>
                     <div className="mt-24">
-                        <h1 className="mb-16 leading-normal capitalize text-slate-100 dark:text-zink-50">Build for anyone who works with Tailwick</h1>
+                        <h1 className="mb-16 leading-normal capitalize text-slate-100 dark:text-zink-50">Build for anyone who works with ramadhan</h1>
                     </div>
                 </div>
             </section>
