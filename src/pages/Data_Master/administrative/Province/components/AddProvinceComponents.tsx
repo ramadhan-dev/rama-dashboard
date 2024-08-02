@@ -66,7 +66,7 @@ const AddProvinceComponents = () => {
 								<FormField label="Code" name="code" />
 								<FormField label="Name" name="name" />
 								<div className="mt-10 flex justify-between gap-5">
-									<ButtonComponent title="Add News" loading={loading} />
+									<ButtonComponent title="SAVE" loading={loading} />
 									<CustomButtonComponent className="btn-horizontal-danger" title="Close" onClick={() => {
 										resetForm()
 										dispatch(provinceAction.setShowModal(false))
