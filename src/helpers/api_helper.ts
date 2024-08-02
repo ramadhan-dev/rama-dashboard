@@ -1,9 +1,8 @@
 import axios from "axios";
 import { getAccessToken } from "./jwt-token-access/accessToken";
 import { ACCESS_KEY } from "#/Common/constants/env";
-import { useSelector } from "react-redux";
-// import { api } from "../config";
 axios.defaults.baseURL = "";
+
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
@@ -15,14 +14,9 @@ if (token) axios.defaults.headers.common["token"] = token;
 // intercepting to capture errors
 axios.interceptors.response.use(
 	function (response) {
-		console.log(false);
-
     return response.data ? response.data : response;
   },
   function (error) {
-		console.log("🚀 ~ axios.interceptors.request.use ~ error:", error)
-
-
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     let message;
 		switch (error?.response?.status) {
@@ -44,6 +38,8 @@ axios.interceptors.response.use(
 			return Promise.reject(message);
   }
 );
+
+
 /**
  * Sets the default authorization
  * @param {*} token
@@ -52,25 +48,19 @@ const setAuthorization = (token: any) => {
   axios.defaults.headers.common["token"] =  token;
 };
 
-const getLoggedUser = () => {
-
-	const user = localStorage.getItem("authUser");
-	if (!user) {
-		return null;
-	} else {
-		return JSON.parse(user);
-	}
-};
-
 
 /**
  * setup Axios
  */
 class APIClient {
-  /**
-   * Fetches data from given url
-   */
 
+
+	/**
+	 * @description
+	 * @param url
+	 * @param params
+	 * @returns
+	 */
   get = (url: any, params: any) => {
     let response;
 
@@ -78,7 +68,19 @@ class APIClient {
 
     if (params) {
       Object.keys(params).map(key => {
-        paramKeys.push(key + '=' + params[key]);
+
+				if (key === 'pagination') {
+					paramKeys.push("page" + '=' +String(params[key]?.page || 1));
+					paramKeys.push("pageSize" + '=' + String(params[key]?.size || 10));
+				} else if (key === 'filter' || key === 'sort') {
+					if (params[key]?.length > 0) {
+
+					}
+				} else {
+					paramKeys.push(key + '=' + params[key]);
+
+				}
+
         return paramKeys;
       });
 
@@ -90,29 +92,52 @@ class APIClient {
 
     return response;
   };
-  /**
-   * post given data to url
-   */
+
+
+	/**
+	 * @description
+	 * @param url
+	 * @param data
+	 * @returns
+	 */
   create = (url: any, data: any) => {
     return axios.post(url, data)
   };
-  /**
-   * Updates data
-   */
+
+
+	/**
+	 * @description
+	 * @param url
+	 * @param data
+	 * @returns
+	 */
   update = (url: any, data: any) => {
     return axios.patch(url, data);
   };
 
+
+	/**
+	 * @description
+	 * @param url
+	 * @param data
+	 * @returns
+	 */
   put = (url: any, data: any) => {
     return axios.put(url, data);
   };
-  /**
-   * Delete
-   */
+
+
+
+	/**
+	 * @description
+	 * @param url
+	 * @param config
+	 * @returns
+	 */
   delete = (url: any, config: any) => {
     return axios.delete(url, { ...config });
   };
 }
 
 
-export { APIClient, setAuthorization, getLoggedUser };
+export { APIClient, setAuthorization };

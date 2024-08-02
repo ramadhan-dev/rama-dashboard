@@ -7,10 +7,10 @@ const Login = lazy(() => import("#/pages/Authentication/Login"));
 const Logout = lazy(() => import("#/pages/Authentication/LogOut"));
 const Register = lazy(() => import("#/pages/Authentication/Register"));
 const LandingPage = lazy(() => import("#/pages/Landing"));
-const CityComponent = lazy(() => import("#/pages/Data_Master/City"));
-const DistrictComponent = lazy(() => import("#/pages/Data_Master/District"));
-const ProvinceComponent = lazy(() => import("#/pages/Data_Master/Province"));
-const SubDistrictComponent = lazy(() => import("#/pages/Data_Master/Sub_District"));
+const CityComponent = lazy(() => import("#/pages/Data_Master/administrative/City"));
+const DistrictComponent = lazy(() => import("#/pages/Data_Master/administrative/District"));
+const ProvinceComponent = lazy(() => import("#/pages/Data_Master/administrative/Province"));
+const SubDistrictComponent = lazy(() => import("#/pages/Data_Master/administrative/Sub_District"));
 
 interface RouteObject {
   path: string;

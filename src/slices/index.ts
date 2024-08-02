@@ -12,7 +12,7 @@ import ProfileReducer from "./auth/profile/reducer";
 // userProfile
 import EcommerceReducer from "./ecommerce/reducer";
 
-import ProvinceReducer from "./administrative/province/reducer";
+import { ProvinceReducer } from "#/pages/Data_Master/administrative/Province/store/province.slice";
 
 
 

@@ -19,10 +19,30 @@ export interface Profile extends masterUser {
 }
 
 
-export interface Province {
-	code: string;
-	name: string;
+export interface masterAdministrative {
+	code:string
+	name:string
+}
+
+
+
+export interface Province extends masterAdministrative {
 	createdAt?:string;
 	updatedAt?:string;
 	id?:string
+}
+
+
+export interface pagination {
+	page:number
+	size:number
+}
+
+export interface paginationPayload {
+	pagination: pagination,
+	filter:[]
+	sort:[]
+	search:string
+	total: number
+	lastId: any
 }
