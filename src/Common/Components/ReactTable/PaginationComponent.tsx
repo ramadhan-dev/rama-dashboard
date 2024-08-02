@@ -10,7 +10,7 @@ interface IPaginationComponent {
 
 
 const PaginationComponent: React.FC<IPaginationComponent> = ({ tableLib, PaginationClassName, totalData }) => {
-	const totalPagination = totalData / tableLib?.getState().pagination.pageSize;
+	const totalPagination = Math.ceil(totalData / tableLib?.getState().pagination.pageSize);
 
 	const [itemsPagination, setItemPagination] = useState<any[]>([])
 	const [currentPage, setCurrentPage] = useState<number>(0)

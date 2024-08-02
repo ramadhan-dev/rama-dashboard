@@ -34,8 +34,8 @@ export interface Province extends masterAdministrative {
 
 
 export interface pagination {
-	page:number
-	size:number
+	pageIndex:number
+	pageSize:number
 }
 
 export interface paginationPayload {
@@ -44,5 +44,5 @@ export interface paginationPayload {
 	sort:[]
 	search:string
 	total: number
-	lastId: any
+	pageCount: number
 }

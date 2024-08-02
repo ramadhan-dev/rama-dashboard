@@ -76,54 +76,6 @@ const AddProvinceComponents = () => {
 						)
 					}}
 				</Formik>
-
-				{/* <form action="/" className="mt-10" id="registerForm"
-					onSubmit={(event: any) => {
-						event.preventDefault();
-						validation.handleSubmit();
-						return false;
-					}}>
-					<div className="mb-3">
-						<label htmlFor="code-field" className="inline-block mb-2 text-base font-medium">Province Code</label>
-						<input
-							type="text"
-							id="code-field"
-							name="code"
-							className="default-form"
-							placeholder="Enter Province Code"
-							onChange={validation.handleChange}
-							onBlur={validation.handleBlur}
-							value={validation.values.code || ""}
-						/>
-						{validation.touched.code && validation.errors.code ? (
-							<div id="code-error" className="mt-1 text-sm text-red-500">{validation.errors.code}</div>
-						) : null}
-					</div>
-
-
-					<div className="mb-3">
-						<label htmlFor="name-field" className="inline-block mb-2 text-base font-medium">Province Name</label>
-						<input
-							type="text"
-							id="name-field"
-							name="name"
-							className="default-form"
-							placeholder="Enter Province Name"
-							onChange={validation.handleChange}
-							onBlur={validation.handleBlur}
-							value={validation.values.name || ""}
-						/>
-						{validation.touched.name && validation.errors.name ? (
-							<div id="name-error" className="mt-1 text-sm text-red-500">{validation.errors.name}</div>
-						) : null}
-					</div>
-
-					<div className="mt-10">
-						<ButtonComponent title="Add New" loading={loading} />
-					</div>
-
-				</form> */}
-
 			</Modal.Body>
 		</Modal>
 

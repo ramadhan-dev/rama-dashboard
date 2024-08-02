@@ -81,8 +81,8 @@ const ReactTableComponent = ({
 
 					<TableHeaderComponent tableLib={tableLib} theadclassName={theadclassName} trclassName={trclassName} thclassName={thclassName} />
 
-					{loading && ( <>loading...</>)}
-					{!loading && ( <TableBodyComponent tableLib={tableLib} tbodyclassName={tbodyclassName} tdclassName={tdclassName} trclassName={trclassName} /> )}
+					{loading && (<>loading...</>)}
+					{!loading && (<TableBodyComponent tableLib={tableLib} tbodyclassName={tbodyclassName} tdclassName={tdclassName} trclassName={trclassName} />)}
 
 				</table>
 			</div>

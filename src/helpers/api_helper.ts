@@ -70,8 +70,8 @@ class APIClient {
       Object.keys(params).map(key => {
 
 				if (key === 'pagination') {
-					paramKeys.push("page" + '=' +String(params[key]?.page || 1));
-					paramKeys.push("pageSize" + '=' + String(params[key]?.size || 10));
+					paramKeys.push("pageIndex" + '=' +String(params[key]?.pageIndex || 1));
+					paramKeys.push("pageSize" + '=' + String(params[key]?.pageSize || 10));
 				} else if (key === 'filter' || key === 'sort') {
 					if (params[key]?.length > 0) {
 

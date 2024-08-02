@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { masterAdministrative, paginationPayload } from "#/interfaces/common";
+import { masterAdministrative, paginationPayload, Province } from "#/interfaces/common";
 import { createNewProvince, getAllProvince } from "./province.asyncAction";
 
 
 interface ProvinceState {
 	data: masterAdministrative | undefined;
 	loading: boolean;
+	getDataLoading: boolean;
 	error: string | undefined;
 	success: boolean;
 	isEdited: boolean;
@@ -13,28 +14,31 @@ interface ProvinceState {
 	pageTitle: string;
 	showModal:boolean;
 	meta: paginationPayload
+	provinceList: Province[]
 }
 
 
 const initialState: ProvinceState = {
 	data: undefined,
+	provinceList:[],
 	error: "",
 	success: false,
 	isEdited: false,
 	isDetail: false,
 	loading: false,
+	getDataLoading: false,
 	pageTitle: "Province List",
 	showModal: false,
 	meta: {
 		pagination: {
-			page: 1,
-			size: 10,
+			pageIndex: 1,
+			pageSize: 10,
 		},
 		filter: [],
 		sort: [],
 		search: '',
 		total: 0,
-		lastId: null,
+		pageCount: 0,
 	},
 };
 
@@ -59,17 +63,27 @@ export const provinceSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(getAllProvince.pending, (state) => {
-				state.loading = true;
+				state.getDataLoading = true;
 				state.error = undefined;
 			})
 			.addCase(getAllProvince.fulfilled, (state, action) => {
-				state.loading = false;
+				const { payload }: any = action
+				state.getDataLoading = false;
 				state.success = true;
-				state.showModal = false;
+				state.provinceList = payload?.data || payload
+				const pagination  = {
+					pagination: {
+						pageIndex: payload?.currentPage - 1,
+						pageSize: 10
+					},
+					total: payload?.totalData,
+					pageCount: payload?.totalPage
+				}
+				state.meta = { ...state?.meta, ...pagination }
 			})
 			.addCase(getAllProvince.rejected, (state, action) => {
 				const { payload }: any = action
-				state.loading = false;
+				state.getDataLoading = false;
 				state.error = payload?.data || payload;
 			})
 			.addCase(createNewProvince.pending, (state) => {
