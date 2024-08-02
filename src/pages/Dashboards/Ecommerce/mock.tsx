@@ -46,9 +46,9 @@ export function useMockAPI(
 	{
 		pagination: { limit = 10, skip = 0 } = {},
 		sort: { field = "id", order = "ASC" } = {},
-		filter:string= '',
 	} = {},
 ) {
+	console.log("🚀 ~ query:", query)
 	const [data, setData] = useState([]);
 	const [count, setCount] = useState(0);
 	const [loading, setLoading] = useState(false);

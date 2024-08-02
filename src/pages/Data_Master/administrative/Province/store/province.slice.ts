@@ -90,7 +90,7 @@ export const provinceSlice = createSlice({
 				state.loading = true;
 				state.error = undefined;
 			})
-			.addCase(createNewProvince.fulfilled, (state, action) => {
+			.addCase(createNewProvince.fulfilled, (state) => {
 				state.loading = false;
 				state.success = true;
 				state.showModal = false;

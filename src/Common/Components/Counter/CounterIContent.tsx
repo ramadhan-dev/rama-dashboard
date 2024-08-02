@@ -8,7 +8,7 @@ interface CounterContentProps {
 	decimals?:number
 }
 
-const CounterContent: React.FC<CounterContentProps> = ({ className, separator = ',', title, value, decimals=0, ...props}) => {
+const CounterContent: React.FC<CounterContentProps> = ({ className, separator = ',', title, value, decimals=0}) => {
 	return (
 		<div className="grow">
 			<h5 className="mb-1 text-16">

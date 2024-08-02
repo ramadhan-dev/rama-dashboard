@@ -5,7 +5,6 @@ const NavBar = lazy(() => import("./NavBar"));
 const Home = lazy(() => import("./Home"));
 const OurFeatures = lazy(() => import("./OurFeatures"));
 const AboutUs = lazy(() => import("./AboutUs"));
-const Pricing = lazy(() => import("./Pricing"));
 const Contact = lazy(() => import("./Contact"));
 const Footer = lazy(() => import("./Footer"));
 

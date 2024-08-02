@@ -1,6 +1,6 @@
 const ProvinceHooks = () => {
 
-	const Download = (param:string) => {}
+	const Download = () => {}
 
 	return {
 		Download

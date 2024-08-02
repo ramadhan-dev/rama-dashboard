@@ -1,5 +1,4 @@
 import React from "react";
-import { ElementType } from "react";
 import CounterIcon from "./CounterIcon";
 import CounterContent from "./CounterIContent";
 
@@ -10,7 +9,7 @@ interface CounterProps {
 }
 
 
-const Counter: React.FC<CounterProps> = ({ className, children, isCard = true, ...props } ) => {
+const Counter: React.FC<CounterProps> = ({ className, children, isCard = true } ) => {
 	return (
 		<React.Fragment>
 			<div className={className}>

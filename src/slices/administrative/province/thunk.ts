@@ -12,7 +12,7 @@ export const CreateProvince = (data: Province) => async (dispatch: Dispatch) => 
 
 
 		if (response) {
-			dispatch(setStatus('success'));
+			dispatch(setStatus());
 		}
 	} catch (error: any) {
 		dispatch(setError(error?.data?.data));

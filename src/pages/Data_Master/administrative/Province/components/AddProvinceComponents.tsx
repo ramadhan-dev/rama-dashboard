@@ -1,7 +1,7 @@
 import { Province } from "#/interfaces/common";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewProvince } from "../store/province.asyncAction";
-import { Field, Form, Formik, useFormik as useFormic } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { provinceAction } from "../store/province.slice";
 import Modal from "#/Common/Components/Modal";

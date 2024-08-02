@@ -5,7 +5,6 @@ import React, { lazy } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { provinceAction } from './store/province.slice';
-import ProvinceHooks from "./hooks/ProvinceHooks";
 
 const AddProvinceComponents = lazy(() => import("./components/AddProvinceComponents"));
 const DownloadButtonComponent = lazy(() => import("#/Common/Components/Button/DownloadButtonComponent"));
@@ -20,7 +19,6 @@ const ProvinceComponent = () => {
 
 	const dispatch = useDispatch<any>();
 	const { pageTitle } = useSelector((state: any) => state?.masterState?.Province);
-	const { Download } = ProvinceHooks()
 
 	return (
 		<React.Fragment>
@@ -41,7 +39,7 @@ const ProvinceComponent = () => {
 
 					<div className="!py-3.5 card-body border-y border-dashed border-slate-200 dark:border-zink-500">
 						<div className="grid grid-cols-1 gap-5 xl:grid-cols-12 mb-4">
-							<DownloadButtonComponent onClick={(param: string) => Download(param)} />
+							<DownloadButtonComponent onClick={(param: string) => console.log(param)} />
 						</div>
 
 						{/* Data Table */}

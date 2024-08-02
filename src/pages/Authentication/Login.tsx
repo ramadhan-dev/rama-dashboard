@@ -12,7 +12,7 @@ import { Link, Navigate } from "react-router-dom";
 import { doLogin } from "./store/login.asyncAction";
 
 
-const Login = (props: any) => {
+const Login = () => {
 
 	document.title = "Login | React Admin & Dashboard Template";
 

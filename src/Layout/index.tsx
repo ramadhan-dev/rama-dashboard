@@ -3,7 +3,6 @@ import Sidebar from './VerticalLayout/Sidebar';
 import Header from './Header';
 import Footer from './Footer';
 import RightSidebar from './RightSidebar';
-import { createSelector } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { Settings } from 'lucide-react';
 import CartDrawer from '#/Common/CartDrawer';

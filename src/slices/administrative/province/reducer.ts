@@ -20,7 +20,7 @@ const ProvinceSlice = createSlice({
 	name: "province",
 	initialState,
 	reducers: {
-		setStatus(state: LoginState, action: PayloadAction<string | any>) {
+		setStatus(state: LoginState) {
 			state.success = true;
 		},
 		setError(state: LoginState, action: PayloadAction<string | any>) {

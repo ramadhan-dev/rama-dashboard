@@ -1,7 +1,6 @@
 
 import BreadCrumb from "#/Common/BreadCrumb";
-import React, { lazy, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 
 const DistrictComponent = () => {

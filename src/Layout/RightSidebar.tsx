@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Drawer from '#/Common/Components/Drawer';
 import { Check, X } from 'lucide-react';
-import { createSelector } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {

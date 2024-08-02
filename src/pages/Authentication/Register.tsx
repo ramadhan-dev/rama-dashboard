@@ -1,7 +1,6 @@
 import React from "react";
 import AuthIcon from "#/pages/AuthenticationInner/AuthIcon";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser, resetRegisterFlag } from "#/slices/thunk";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 // Formik validation

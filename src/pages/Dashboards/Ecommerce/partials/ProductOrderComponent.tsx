@@ -1,25 +1,24 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import ReactTableComponent from "#/Common/Components/ReactTable";
 import { usePagination } from "#/Common/Components/ReactTable/hooks/usePagination";
 import { useSorting } from "#/Common/Components/ReactTable/hooks/useSorting";
 import { useMockAPI } from "../mock";
 import { useFilter } from "#/Common/Components/ReactTable/hooks/useFilter";
-import { ColumnDef } from "@tanstack/react-table";
 
 
 const ProductOrder3Component = () => {
 
-	type TPerson = {
-		id: string | number;
-		firstName: string;
-		lastName: string;
-		age: number;
-		visits: number;
-		status: string;
-		progress: number;
-		subRows?: TPerson[];
-	};
+	// type TPerson = {
+	// 	id: string | number;
+	// 	firstName: string;
+	// 	lastName: string;
+	// 	age: number;
+	// 	visits: number;
+	// 	status: string;
+	// 	progress: number;
+	// 	subRows?: TPerson[];
+	// };
 
 
 
@@ -30,8 +29,7 @@ const ProductOrder3Component = () => {
 
 	const [data, count, loading]: any = useMockAPI("/episodes", {
 		pagination: { skip, limit },
-		sort: { field, order },
-		filter: filter,
+		sort: { field, order }
 	});
 
 	const cols = [
@@ -86,20 +84,7 @@ const ProductOrder3Component = () => {
 		},
 	];
 
-	const columns = useMemo<ColumnDef<TPerson>[]>(
-		() => [
-			{
-				Header: '#',
-				id: 'id',
-				Cell: (row: any) => <div className="text-center">{row.row.index + 1}</div>,
-				align: 'center',
-				width: 50,
-				minWidth: 50,
-				maxWidth: 50,
-			}
-		],
-		[data]
-	);
+
 
 	const pageCount = Math.round(count / limit);
 

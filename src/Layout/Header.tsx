@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { ChevronsLeft, ChevronsRight, Gem, LogOut, Mail, MessagesSquare, Search, Settings, User2 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
 
 //import images
 import userProfile from "#/assets/images/users/avatar-2.png";
@@ -12,7 +11,7 @@ import { Dropdown } from '#/Common/Components/Dropdown';
 import { changeLeftsidebarSizeType } from '#/slices/thunk';
 import { BASE_URL } from '#/Common/constants/env';
 
-const Header = ({ handleToggleDrawer, handleDrawer }: any) => {
+const Header = ({ handleToggleDrawer }: any) => {
 
 	const dispatch = useDispatch<any>();
 	const Layout = useSelector((state: any) => state?.masterState?.Layout);

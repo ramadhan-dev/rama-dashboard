@@ -1,13 +1,9 @@
-import { ThunkAction } from "redux-thunk";
-// import { RootState } from "#/slices";
-import { Action, Dispatch } from "redux";
+import { Dispatch } from "redux";
 import { registerFailed, registerSuccess, resetRegister } from "./reducer";
-import { User } from "#/interfaces/common";
-// import { Register } from "#/helpers/apis/auth/auth_api";
 
 
 
-export const registerUser = (user: User ) => async (dispatch: Dispatch) => {
+export const registerUser = () => async (dispatch: Dispatch) => {
     try {
 				let response: any;
 				// response = await Register(user);

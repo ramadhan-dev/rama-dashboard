@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { loginAction } from './store/login.slice';
 
-interface selectLogoutState {
-    isUserLogout: boolean;
-}
-
 const Logout: React.FC = () => {
 
     const dispatch = useDispatch<any>();

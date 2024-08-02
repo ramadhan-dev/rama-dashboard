@@ -1,6 +1,6 @@
 
 import BreadCrumb from "#/Common/BreadCrumb";
-import React, { lazy, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // const ProductOrderComponent = lazy(() => import("./partials/ProductOrderComponent"))

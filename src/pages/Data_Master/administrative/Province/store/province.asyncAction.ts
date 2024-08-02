@@ -1,5 +1,5 @@
 import { AddNewProvince, AllProvince } from './../api/province_api'
-import { masterAdministrative, paginationPayload, Province, User } from "#/interfaces/common";
+import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import { ChevronsLeft, ChevronsRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 interface IPaginationComponent {
@@ -14,6 +14,7 @@ const PaginationComponent: React.FC<IPaginationComponent> = ({ tableLib, Paginat
 
 	const [itemsPagination, setItemPagination] = useState<any[]>([])
 	const [currentPage, setCurrentPage] = useState<number>(0)
+	console.log("🚀 ~ currentPage:", currentPage)
 	let pageIndex = tableLib?.getState().pagination.pageIndex
 	let MINIMAL_PAGE_ITEM_COUNT = 9;
 

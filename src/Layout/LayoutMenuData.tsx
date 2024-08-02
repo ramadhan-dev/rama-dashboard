@@ -1,4 +1,4 @@
-import { MonitorCheck, FileArchive, MonitorDot } from "lucide-react";
+import { MonitorCheck, FileArchive } from "lucide-react";
 
 const menuData: any = [
 	{

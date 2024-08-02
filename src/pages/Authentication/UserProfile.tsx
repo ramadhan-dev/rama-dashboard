@@ -59,8 +59,8 @@ const UserProfile = () => {
     validationSchema: Yup.object({
       username: Yup.string().required("Please Enter Your UserName"),
     }),
-    onSubmit: (values) => {
-      dispatch(editProfile(values));
+    onSubmit: () => {
+      dispatch(editProfile());
     }
   });
 

@@ -8,7 +8,7 @@ interface DrawerHeaderProps {
     as?: ElementType
 }
 
-const DrawerHeader = ({ children, className, closeButtonClass, as: Component = "button", ...props }: DrawerHeaderProps) => {
+const DrawerHeader = ({ children, className, as: Component = "button" }: DrawerHeaderProps) => {
     const { onHide } = useDrawerContext();
 
     return (
