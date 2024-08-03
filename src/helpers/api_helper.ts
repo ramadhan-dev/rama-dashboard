@@ -66,9 +66,8 @@ class APIClient {
 
     let paramKeys: any = [];
 
-    if (params) {
+		if (params && typeof (params) === 'object') {
       Object.keys(params).map(key => {
-
 				if (key === 'pagination') {
 					paramKeys.push("pageIndex" + '=' +String(params[key]?.pageIndex || 1));
 					paramKeys.push("pageSize" + '=' + String(params[key]?.pageSize || 10));
@@ -84,9 +83,14 @@ class APIClient {
         return paramKeys;
       });
 
-      const queryString = paramKeys && paramKeys.length ? paramKeys.join('&') : "";
-      response = axios.get(`${url}?${queryString}`, params);
-    } else {
+
+			const queryString = paramKeys && paramKeys.length ? paramKeys.join('&') : "";
+			response = axios.get(`${url}?${queryString}`, params);
+
+		} else if (typeof (params) === 'string'){
+			response = axios.get(`${url}/${params}`);
+
+		} else {
       response = axios.get(`${url}`, params);
     }
 

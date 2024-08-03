@@ -9,7 +9,6 @@ interface AuthProtectedProps {
 }
 
 const AuthProtected: React.FC<AuthProtectedProps> = ({ children }) => {
-	console.log("🚀 ~ getAccessToken(ACCESS_KEY):", getAccessToken(ACCESS_KEY))
 
   if (getAccessToken(ACCESS_KEY) === undefined) {
     return <Navigate to={{ pathname: "/login" }} />;
