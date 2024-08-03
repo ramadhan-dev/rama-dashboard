@@ -31,10 +31,12 @@ const ReactTableComponent = ({
 }: any) => {
 
 	const columnHelper = createColumnHelper();
-	const columns = useMemo(() => cols.map(({ id, header, enableSorting, cell }: any) => {
+	const columns = useMemo(() => cols.map(({ id, header, enableSorting, cell, size, headerAlign }: any) => {
 		return ({
 			...columnHelper.accessor(id, { header }),
 			enableSorting,
+			headerAlign,
+			size,
 			cell
 		})
 	}), [cols]);

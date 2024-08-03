@@ -15,7 +15,14 @@ const TableHeaderComponent: React.FC<ITableHeaderComponent> = ({ tableLib, thead
 				<tr key={headerGroup.id} className={trclassName}>
 					{headerGroup.headers.map((header:any) => {
 						return (
-							<th key={header.id} colSpan={header.colSpan}
+							<th
+								key={header.id}
+								colSpan={header.colSpan}
+								style={{
+									width: header.column.columnDef.size,
+									textAlign: header.column.columnDef.headerAlign || 'left',
+								 }}
+
 								{...{
 									className: `${header.column.getCanSort()} ${thclassName}`,
 									onClick: header.column.getToggleSortingHandler(),
