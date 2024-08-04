@@ -9,6 +9,7 @@ import { useFilter } from "#/Common/Components/ReactTable/hooks/useFilter";
 import moment from 'moment';
 import DeleteModal from "#/Common/DeleteModal";
 import { provinceAction } from "../store/province.slice";
+import { toast } from "react-toastify";
 
 const ProvinceTableComponent = () => {
 

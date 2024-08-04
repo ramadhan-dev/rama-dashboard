@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {rootReducer} from './slices';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -19,6 +21,8 @@ const store = configureStore({ reducer: combineReducers({
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+			<ToastContainer closeButton={false} limit={1} />
+
       <BrowserRouter basename={''}>
         <App />
       </BrowserRouter>

@@ -1,16 +1,19 @@
 import { AddNewProvince, AllProvince, deleteProvinceApi, OneProvince, updateProvinceApi } from './../api/province_api'
 import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
+import { toast } from "react-toastify";
 
 /**
  * API Login
  */
 export const createNewProvince = createAsyncThunk('addNewProvince', async (data: masterAdministrative, { rejectWithValue }) => {
 	try {
-		return await AddNewProvince(data)
+		const response =  await AddNewProvince(data)
+		toast.success("Event Added Successfully", { autoClose: 2000 });
+		return response
 	} catch (error: any) {
-		return rejectWithValue(error?.data || error); // Mengembalikan pesan error
+		toast.error("Event Added Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
 	}
 });
 
@@ -20,9 +23,10 @@ export const createNewProvince = createAsyncThunk('addNewProvince', async (data:
  */
 export const getAllProvince = createAsyncThunk('getAllProvince', async (payload: paginationPayload, { rejectWithValue }) => {
 	try {
-		return await AllProvince(payload)
+		const response = await AllProvince(payload)
+		return response
 	} catch (error: any) {
-		return rejectWithValue(error?.data || error); // Mengembalikan pesan error
+		return rejectWithValue(error?.data || error);
 	}
 });
 
@@ -32,9 +36,12 @@ export const getAllProvince = createAsyncThunk('getAllProvince', async (payload:
  */
 export const getOneProvince = createAsyncThunk('getOneProvince', async (payload:string , { rejectWithValue }) => {
 	try {
-		return await OneProvince(payload)
+		const response =  await OneProvince(payload)
+		toast.success("Event Get Province Successfully", { autoClose: 2000 });
+		return response;
 	} catch (error: any) {
-		return rejectWithValue(error?.data || error); // Mengembalikan pesan error
+		toast.error("Event Get Province Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
 	}
 });
 
@@ -51,9 +58,12 @@ export interface UploadProps extends masterAdministrative {
 
 export const updateProvince = createAsyncThunk('updateProvince', async (data: UploadProps, { rejectWithValue }) => {
 	try {
-		return await updateProvinceApi(data)
+		const response =  await updateProvinceApi(data)
+		toast.success("Event Update Successfully", { autoClose: 2000 });
+		return response
 	} catch (error: any) {
-		return rejectWithValue(error?.data || error); // Mengembalikan pesan error
+		toast.error("Event Update Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
 	}
 });
 
@@ -64,8 +74,11 @@ export const updateProvince = createAsyncThunk('updateProvince', async (data: Up
  */
 export const deleteProvince = createAsyncThunk('deleteProvince', async (payload: string|undefined, { rejectWithValue }) => {
 	try {
-		return await deleteProvinceApi(payload)
+		const response =  await deleteProvinceApi(payload)
+		toast.success("Event Delete Successfully", { autoClose: 2000 });
+		return response
 	} catch (error: any) {
-		return rejectWithValue(error?.data || error); // Mengembalikan pesan error
+		toast.error("Event Delete Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
 	}
 });

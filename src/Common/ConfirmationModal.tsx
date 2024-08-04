@@ -26,7 +26,7 @@ const DeleteModal: React.FC<props> = ({ show, onHide, isEdited }) => {
                         <h5 className="mb-1">Are you sure?</h5>
                         <p className="text-slate-500 dark:text-zink-200">Are you certain you want to {isEdited ? 'Update': 'Save'} this record?</p>
                         <div className="flex justify-center gap-2 mt-6">
-                            <button type="reset" className="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10" onClick={onHide}>Cancel</button>
+                            <button type="button" className="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10" onClick={onHide}>Cancel</button>
 								<button type="submit" id="deleteRecord" data-modal-close="deleteModal" className="text-white bg-green-500 border-green-500 btn hover:text-white hover:bg-green-600 hover:border-green-600 focus:text-white focus:bg-green-600 focus:border-green-600 focus:ring focus:ring-green-100 active:text-white active:bg-green-600 active:border-green-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Yes, {isEdited ? 'Update' : 'Save'} It!</button>
                         </div>
                     </div>

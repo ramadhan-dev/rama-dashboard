@@ -24,7 +24,6 @@ const ProvinceComponent = () => {
 		<React.Fragment>
 			<BreadCrumb title='' pageTitle='Data Master Province' />
 			{/* <DeleteModal show={deleteModal} onHide={deleteToggle} onDelete={handleDelete} /> */}
-			{/* <ToastContainer closeButton={false} limit={1} /> */}
 			<div className="card" id="employeeTable">
 				<div className="card-body">
 					<div className="flex items-center gap-3 mb-4">

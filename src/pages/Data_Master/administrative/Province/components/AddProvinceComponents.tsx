@@ -45,7 +45,7 @@ const AddProvinceComponents = () => {
 						enableReinitialize={true}
 						initialValues={initialValues}
 						validationSchema={validationSchema}
-						onSubmit={(values, { resetForm }) => {
+						onSubmit={(values) => {
 							if (isEdited) {
 								values = { ...values, ...{ id: province._id } }
 								dispatch(updateProvince(values))
@@ -62,7 +62,6 @@ const AddProvinceComponents = () => {
 							 */
 							useEffect(() => {
 								if (showModal) {
-									resetForm();
 									dispatch(provinceAction.setFormError(''))
 								}
 							}, [showModal]);
@@ -73,7 +72,7 @@ const AddProvinceComponents = () => {
 									<FormField label="Name" name="name" />
 									<div className="mt-10 flex justify-between gap-5">
 										<ButtonComponent
-											onClick={() => dispatch(provinceAction.setShowModalUpdate(true))``}
+											onClick={() => dispatch(provinceAction.setShowModalUpdate(true))}
 										 	title={isEdited ? "EDIT" : "SAVE"}
 											loading={false} />
 										<CustomButtonComponent className="btn-horizontal-danger" title="Close" onClick={() => {
