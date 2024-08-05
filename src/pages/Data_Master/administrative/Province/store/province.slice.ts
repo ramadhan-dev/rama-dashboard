@@ -120,6 +120,7 @@ export const provinceSlice = createSlice({
 			.addCase(createNewProvince.pending, (state) => {
 				state.loading = true;
 				state.error = undefined;
+				state.isUpdated = false;
 			})
 			.addCase(createNewProvince.fulfilled, (state) => {
 				state.loading = false;

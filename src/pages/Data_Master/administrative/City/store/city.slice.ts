@@ -119,6 +119,8 @@ export const citySlice = createSlice({
 			.addCase(createNewCity.pending, (state) => {
 				state.loading = true;
 				state.error = undefined;
+				state.isUpdated = false;
+
 			})
 			.addCase(createNewCity.fulfilled, (state) => {
 				state.loading = false;

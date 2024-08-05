@@ -61,6 +61,7 @@ const AddProvinceComponents = () => {
 							 * Reset form saat pertamakali di akses
 							 */
 							useEffect(() => {
+								resetForm()
 								if (showModal) {
 									dispatch(provinceAction.setFormError(''))
 								}
