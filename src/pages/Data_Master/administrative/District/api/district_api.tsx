@@ -8,6 +8,7 @@ export const GET_ALL_DISTRICT = API_URL + "/district/get-all-district";
 export const GET_ONE_DISTRICT = API_URL + "/district/get-district";
 export const UPDATE_DISTRICT = API_URL + "/district/update-district";
 export const DELETE_DISTRICT = API_URL + "/district/delete-district";
+export const GET_DISTRICT_OPTIONS = API_URL + "/district/get-district-options";
 
 const api = new APIClient();
 
@@ -16,3 +17,4 @@ export const AllDistrict = (payload: paginationPayload) => api.get(GET_ALL_DISTR
 export const OneDistrict = (id: string) => api.get(GET_ONE_DISTRICT, { id });
 export const updateDistrictApi = (payload: UploadProps) => api.put(UPDATE_DISTRICT, payload);
 export const deleteDistrictApi = (id: string | undefined) => api.delete(DELETE_DISTRICT, { data: { id } });
+export const districtOptions = (id: string | undefined) => api.get(GET_DISTRICT_OPTIONS, { id })

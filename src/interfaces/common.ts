@@ -45,6 +45,10 @@ export interface District extends City {
 	city_code: any
 }
 
+export interface SubDistrict extends District {
+	district_code: any
+}
+
 // END
 
 

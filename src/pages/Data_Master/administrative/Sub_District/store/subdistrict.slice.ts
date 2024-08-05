@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { District, masterAdministrative, paginationPayload, SelectProps } from "#/interfaces/common";
-import { createNewDistrict, deleteDistrict, getAllDistrict, getDistrictOptions, getOneDistrict, updateDistrict } from "./district.asyncAction";
+import { SubDistrict, masterAdministrative, paginationPayload } from "#/interfaces/common";
+import { createNewSubDistrict, deleteSubDistrict, getAllSubDistrict, getOneSubDistrict, updateSubDistrict } from "./subdistrict.asyncAction";
 
 
-interface DistrictState {
+interface SubDistrictState {
 	data: masterAdministrative | undefined;
 	dataSelected: string | undefined;
 	loading: boolean;
@@ -19,19 +19,16 @@ interface DistrictState {
 	showModalDelete: boolean;
 	showModalUpdate: boolean;
 	meta: paginationPayload
-	districtList: District[]
-	district: District | undefined
-	districtOptions: SelectProps[]
-
+	subDistrictList: SubDistrict[]
+	subDistrict: SubDistrict | undefined
 }
 
 
-const initialState: DistrictState = {
+const initialState: SubDistrictState = {
 	data: undefined,
 	dataSelected: undefined,
-	districtList: [],
-	districtOptions:[],
-	district: undefined,
+	subDistrictList: [],
+	subDistrict: undefined,
 	error: "",
 	success: false,
 	isUpdated: false,
@@ -40,7 +37,7 @@ const initialState: DistrictState = {
 	isDetail: false,
 	loading: false,
 	getDataLoading: false,
-	pageTitle: "District List",
+	pageTitle: "Sub District List",
 	showModal: false,
 	showModalDelete: false,
 	showModalUpdate: false,
@@ -58,32 +55,32 @@ const initialState: DistrictState = {
 };
 
 
-export const districtSlice = createSlice({
-	name: "district",
+export const subDistrictSlice = createSlice({
+	name: "subDistrict",
 	initialState,
 	reducers: {
-		setEdit(state: DistrictState, action: PayloadAction<boolean>) {
+		setEdit(state: SubDistrictState, action: PayloadAction<boolean>) {
 			state.isEdited = action.payload;
 		},
-		setDetail(state: DistrictState, action: PayloadAction<boolean>) {
+		setDetail(state: SubDistrictState, action: PayloadAction<boolean>) {
 			state.isDetail = action.payload;
 		},
-		setPageTitle(state: DistrictState, action: PayloadAction<string>) {
+		setPageTitle(state: SubDistrictState, action: PayloadAction<string>) {
 			state.pageTitle = action.payload;
 		},
-		setShowModal(state: DistrictState, action: PayloadAction<boolean>) {
+		setShowModal(state: SubDistrictState, action: PayloadAction<boolean>) {
 			state.showModal = action.payload;
 		},
-		setShowModalDelete(state: DistrictState, action: PayloadAction<boolean>) {
+		setShowModalDelete(state: SubDistrictState, action: PayloadAction<boolean>) {
 			state.showModalDelete = action.payload;
 		},
-		setShowModalUpdate(state: DistrictState, action: PayloadAction<boolean>) {
+		setShowModalUpdate(state: SubDistrictState, action: PayloadAction<boolean>) {
 			state.showModalUpdate = action.payload;
 		},
-		setDataSelected(state: DistrictState, action: PayloadAction<string>) {
+		setDataSelected(state: SubDistrictState, action: PayloadAction<string>) {
 			state.dataSelected = action.payload;
 		},
-		setFormError(state: DistrictState, action: PayloadAction<string>) {
+		setFormError(state: SubDistrictState, action: PayloadAction<string>) {
 			state.error = action.payload;
 		}
 	},
@@ -91,15 +88,15 @@ export const districtSlice = createSlice({
 		builder
 
 			// Get All data
-			.addCase(getAllDistrict.pending, (state) => {
+			.addCase(getAllSubDistrict.pending, (state) => {
 				state.getDataLoading = true;
 				state.error = undefined;
 			})
-			.addCase(getAllDistrict.fulfilled, (state, action) => {
+			.addCase(getAllSubDistrict.fulfilled, (state, action) => {
 				const { payload }: any = action
 				state.getDataLoading = false;
 				state.success = true;
-				state.districtList = payload?.data || payload
+				state.subDistrictList = payload?.data || payload
 				const pagination = {
 					pagination: {
 						pageIndex: payload?.currentPage - 1,
@@ -110,7 +107,7 @@ export const districtSlice = createSlice({
 				}
 				state.meta = { ...state?.meta, ...pagination }
 			})
-			.addCase(getAllDistrict.rejected, (state, action) => {
+			.addCase(getAllSubDistrict.rejected, (state, action) => {
 				const { payload }: any = action
 				state.getDataLoading = false;
 				state.error = payload?.data || payload;
@@ -119,20 +116,20 @@ export const districtSlice = createSlice({
 
 
 			// Add New
-			.addCase(createNewDistrict.pending, (state) => {
+			.addCase(createNewSubDistrict.pending, (state) => {
 				state.loading = true;
 				state.error = undefined;
 				state.isUpdated = false;
 
 			})
-			.addCase(createNewDistrict.fulfilled, (state) => {
+			.addCase(createNewSubDistrict.fulfilled, (state) => {
 				state.loading = false;
 				state.success = true;
 				state.showModal = false;
 				state.isUpdated = true;
 				state.showModalUpdate = false;
 			})
-			.addCase(createNewDistrict.rejected, (state, action) => {
+			.addCase(createNewSubDistrict.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
 				state.showModalUpdate = true;
@@ -142,88 +139,73 @@ export const districtSlice = createSlice({
 
 
 			// Get One
-			.addCase(getOneDistrict.pending, (state) => {
+			.addCase(getOneSubDistrict.pending, (state) => {
 				state.loading = true;
 				state.error = undefined;
 			})
-			.addCase(getOneDistrict.fulfilled, (state, action) => {
+			.addCase(getOneSubDistrict.fulfilled, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
 				state.success = true;
 				state.isEdited = true;
 				state.showModal = true;
-				state.district = payload?.data
+				state.subDistrict = payload?.data
 			})
-			.addCase(getOneDistrict.rejected, (state, action) => {
+			.addCase(getOneSubDistrict.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
-				state.district = undefined
+				state.subDistrict = undefined
 				state.error = payload?.data || payload;
 			})
-			// END
+		// END
 
 
 			// Update
-			.addCase(updateDistrict.pending, (state) => {
+			.addCase(updateSubDistrict.pending, (state) => {
 				state.loading = true;
 				state.isUpdated = false;
 				state.error = undefined;
 			})
-			.addCase(updateDistrict.fulfilled, (state) => {
+			.addCase(updateSubDistrict.fulfilled, (state) => {
 				state.loading = false;
 				state.isUpdated = true;
 				state.isEdited = false;
 				state.showModal = false;
 			})
-			.addCase(updateDistrict.rejected, (state, action) => {
+			.addCase(updateSubDistrict.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
 				state.isUpdated = false;
 				state.showModalUpdate = false;
 				state.error = payload?.data;
 			})
-			// END
+		// END
 
 
 			// Delete
-			.addCase(deleteDistrict.pending, (state) => {
+			.addCase(deleteSubDistrict.pending, (state) => {
 				state.loading = true;
 				state.isDeleted = false;
 				state.error = undefined;
 			})
-			.addCase(deleteDistrict.fulfilled, (state) => {
+			.addCase(deleteSubDistrict.fulfilled, (state) => {
 				state.loading = false;
 				state.isDeleted = true;
 				state.showModalDelete = false;
 			})
-			.addCase(deleteDistrict.rejected, (state, action) => {
+			.addCase(deleteSubDistrict.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
 				state.isDeleted = false;
 				state.error = payload?.data?.errorResponse?.errmsg;
 			})
-			// END
-
-			// Delete
-			.addCase(getDistrictOptions.pending, (state) => {
-				state.loading = true;
-				state.error = undefined;
-			})
-			.addCase(getDistrictOptions.fulfilled, (state, action) => {
-				const { payload }: any = action
-				state.districtOptions = payload?.data
-				state.loading = false;
-			})
-			.addCase(getDistrictOptions.rejected, (state, action) => {
-				const { payload }: any = action
-				state.loading = false;
-				state.error = payload?.data?.errorResponse?.errmsg;
-			})
 		// END
+
+
 
 	},
 });
 
-// export default districtSlice.reducer;
+// export default subDistrictSlice.reducer;
 
-export const { reducer: DistrictReducer, actions: districtAction } = districtSlice;
+export const { reducer: SubDistrictReducer, actions: subDistrictAction } = subDistrictSlice;

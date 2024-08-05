@@ -1,0 +1,82 @@
+import { AddNewSubDistrict, AllSubDistrict, deleteSubDistrictApi, OneSubDistrict, updateSubDistrictApi } from '../api/subdistrict_api'
+import { masterAdministrative, paginationPayload } from "#/interfaces/common";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+
+/**
+ * API Login
+ */
+export const createNewSubDistrict = createAsyncThunk('addNewSubDistrict', async (data: masterAdministrative, { rejectWithValue }) => {
+	try {
+		const response =  await AddNewSubDistrict(data)
+		toast.success("Event Added Successfully", { autoClose: 2000 });
+		return response
+	} catch (error: any) {
+		toast.error("Event Added Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
+	}
+});
+
+
+/**
+ * API Register
+ */
+export const getAllSubDistrict = createAsyncThunk('getAllSubDistrict', async (payload: paginationPayload, { rejectWithValue }) => {
+	try {
+		const response = await AllSubDistrict(payload)
+		return response
+	} catch (error: any) {
+		return rejectWithValue(error?.data || error);
+	}
+});
+
+
+/**
+ * API Register
+ */
+export const getOneSubDistrict = createAsyncThunk('getOneSubDistrict', async (payload:string , { rejectWithValue }) => {
+	try {
+		const response =  await OneSubDistrict(payload)
+		return response;
+	} catch (error: any) {
+		return rejectWithValue(error?.data || error);
+	}
+});
+
+
+
+
+/**
+ * API Login
+ */
+
+export interface UploadProps extends masterAdministrative {
+	id?:string|undefined
+}
+
+export const updateSubDistrict = createAsyncThunk('updateSubDistrict', async (data: UploadProps, { rejectWithValue }) => {
+	try {
+		const response =  await updateSubDistrictApi(data)
+		toast.success("Event Update Successfully", { autoClose: 2000 });
+		return response
+	} catch (error: any) {
+		toast.error("Event Update Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
+	}
+});
+
+
+
+/**
+ * API Register
+ */
+export const deleteSubDistrict = createAsyncThunk('deleteSubDistrict', async (payload: string|undefined, { rejectWithValue }) => {
+	try {
+		const response =  await deleteSubDistrictApi(payload)
+		toast.success("Event Delete Successfully", { autoClose: 2000 });
+		return response
+	} catch (error: any) {
+		toast.error("Event Delete Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
+	}
+});

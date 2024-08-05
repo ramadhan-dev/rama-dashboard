@@ -1,4 +1,4 @@
-import { AddNewDistrict, AllDistrict, deleteDistrictApi, OneDistrict, updateDistrictApi } from './../api/district_api'
+import { AddNewDistrict, AllDistrict, deleteDistrictApi, districtOptions, OneDistrict, updateDistrictApi } from './../api/district_api'
 import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
@@ -74,6 +74,22 @@ export const deleteDistrict = createAsyncThunk('deleteDistrict', async (payload:
 	try {
 		const response =  await deleteDistrictApi(payload)
 		toast.success("Event Delete Successfully", { autoClose: 2000 });
+		return response
+	} catch (error: any) {
+		toast.error("Event Delete Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
+	}
+});
+
+
+
+
+/**
+ * GET Data District options
+ */
+export const getDistrictOptions = createAsyncThunk('getDistrictOptions', async (payload: string | undefined, { rejectWithValue }) => {
+	try {
+		const response = await districtOptions(payload)
 		return response
 	} catch (error: any) {
 		toast.error("Event Delete Failed", { autoClose: 2000 });
