@@ -11,7 +11,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({ loading, title, onCli
 			disabled={loading}
 			type="button"
 		>
-			{loading ? 'Loading...' : title }
+			{title }
 		</button>
 	)
 }

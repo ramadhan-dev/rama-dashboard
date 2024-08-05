@@ -19,6 +19,9 @@ export interface Profile extends masterUser {
 }
 
 
+/**
+ * Administrative Interface
+ */
 export interface masterAdministrative {
 	code:string
 	name:string
@@ -33,6 +36,19 @@ export interface Province extends masterAdministrative {
 }
 
 
+
+export interface City extends Province {
+	province_code:any
+}
+
+// END
+
+
+
+
+/**
+ * Pagination interface
+ */
 export interface pagination {
 	pageIndex:number
 	pageSize:number
@@ -45,4 +61,13 @@ export interface paginationPayload {
 	search:string
 	total: number
 	pageCount: number
+}
+// END
+
+
+// Interface React-Select
+
+export interface SelectProps {
+	value:string|number
+	label:string|number
 }

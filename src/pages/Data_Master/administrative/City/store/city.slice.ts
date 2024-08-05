@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { masterAdministrative, paginationPayload, Province, SelectProps } from "#/interfaces/common";
-import { createNewProvince, deleteProvince, getAllProvince, getOneProvince, getProvinceOptions, updateProvince } from "./province.asyncAction";
+import { City, masterAdministrative, paginationPayload } from "#/interfaces/common";
+import { createNewCity, deleteCity, getAllCity, getOneCity, updateCity } from "./city.asyncAction";
 
 
-interface ProvinceState {
+interface CityState {
 	data: masterAdministrative | undefined;
-	dataSelected:string | undefined;
+	dataSelected: string | undefined;
 	loading: boolean;
 	getDataLoading: boolean;
 	error: string | undefined;
@@ -17,20 +17,18 @@ interface ProvinceState {
 	pageTitle: string;
 	showModal: boolean;
 	showModalDelete: boolean;
-	showModalUpdate:boolean;
+	showModalUpdate: boolean;
 	meta: paginationPayload
-	provinceList: Province[]
-	province: Province | undefined
-	provinceOptions: SelectProps[]
+	cityList: City[]
+	city: City | undefined
 }
 
 
-const initialState: ProvinceState = {
+const initialState: CityState = {
 	data: undefined,
 	dataSelected: undefined,
-	provinceList: [],
-	provinceOptions:[],
-	province: undefined,
+	cityList: [],
+	city: undefined,
 	error: "",
 	success: false,
 	isUpdated: false,
@@ -39,7 +37,7 @@ const initialState: ProvinceState = {
 	isDetail: false,
 	loading: false,
 	getDataLoading: false,
-	pageTitle: "Province List",
+	pageTitle: "City List",
 	showModal: false,
 	showModalDelete: false,
 	showModalUpdate: false,
@@ -57,32 +55,32 @@ const initialState: ProvinceState = {
 };
 
 
-export const provinceSlice = createSlice({
-	name: "province",
+export const citySlice = createSlice({
+	name: "city",
 	initialState,
 	reducers: {
-		setEdit(state: ProvinceState, action: PayloadAction<boolean>) {
+		setEdit(state: CityState, action: PayloadAction<boolean>) {
 			state.isEdited = action.payload;
 		},
-		setDetail(state: ProvinceState, action: PayloadAction<boolean>) {
+		setDetail(state: CityState, action: PayloadAction<boolean>) {
 			state.isDetail = action.payload;
 		},
-		setPageTitle(state: ProvinceState, action: PayloadAction<string>) {
+		setPageTitle(state: CityState, action: PayloadAction<string>) {
 			state.pageTitle = action.payload;
 		},
-		setShowModal(state: ProvinceState, action: PayloadAction<boolean>) {
+		setShowModal(state: CityState, action: PayloadAction<boolean>) {
 			state.showModal = action.payload;
 		},
-		setShowModalDelete(state: ProvinceState, action: PayloadAction<boolean>) {
+		setShowModalDelete(state: CityState, action: PayloadAction<boolean>) {
 			state.showModalDelete = action.payload;
 		},
-		setShowModalUpdate(state: ProvinceState, action: PayloadAction<boolean>) {
+		setShowModalUpdate(state: CityState, action: PayloadAction<boolean>) {
 			state.showModalUpdate = action.payload;
 		},
-		setDataSelected(state: ProvinceState, action: PayloadAction<string>) {
+		setDataSelected(state: CityState, action: PayloadAction<string>) {
 			state.dataSelected = action.payload;
 		},
-		setFormError(state: ProvinceState, action: PayloadAction<string>) {
+		setFormError(state: CityState, action: PayloadAction<string>) {
 			state.error = action.payload;
 		}
 	},
@@ -90,15 +88,15 @@ export const provinceSlice = createSlice({
 		builder
 
 			// Get All data
-			.addCase(getAllProvince.pending, (state) => {
+			.addCase(getAllCity.pending, (state) => {
 				state.getDataLoading = true;
 				state.error = undefined;
 			})
-			.addCase(getAllProvince.fulfilled, (state, action) => {
+			.addCase(getAllCity.fulfilled, (state, action) => {
 				const { payload }: any = action
 				state.getDataLoading = false;
 				state.success = true;
-				state.provinceList = payload?.data || payload
+				state.cityList = payload?.data || payload
 				const pagination = {
 					pagination: {
 						pageIndex: payload?.currentPage - 1,
@@ -109,26 +107,27 @@ export const provinceSlice = createSlice({
 				}
 				state.meta = { ...state?.meta, ...pagination }
 			})
-			.addCase(getAllProvince.rejected, (state, action) => {
+			.addCase(getAllCity.rejected, (state, action) => {
 				const { payload }: any = action
 				state.getDataLoading = false;
 				state.error = payload?.data || payload;
 			})
 			// End
 
+
 			// Add New
-			.addCase(createNewProvince.pending, (state) => {
+			.addCase(createNewCity.pending, (state) => {
 				state.loading = true;
 				state.error = undefined;
 			})
-			.addCase(createNewProvince.fulfilled, (state) => {
+			.addCase(createNewCity.fulfilled, (state) => {
 				state.loading = false;
 				state.success = true;
 				state.showModal = false;
 				state.isUpdated = true;
 				state.showModalUpdate = false;
 			})
-			.addCase(createNewProvince.rejected, (state, action) => {
+			.addCase(createNewCity.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
 				state.showModalUpdate = false;
@@ -136,80 +135,66 @@ export const provinceSlice = createSlice({
 			})
 			// END
 
+
 			// Get One
-			.addCase(getOneProvince.pending, (state) => {
+			.addCase(getOneCity.pending, (state) => {
 				state.loading = true;
 				state.error = undefined;
 			})
-			.addCase(getOneProvince.fulfilled, (state, action) => {
+			.addCase(getOneCity.fulfilled, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
 				state.success = true;
 				state.isEdited = true;
 				state.showModal = true;
-				state.province = payload?.data
+				state.city = payload?.data
 			})
-			.addCase(getOneProvince.rejected, (state, action) => {
+			.addCase(getOneCity.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
-				state.province = undefined
+				state.city = undefined
 				state.error = payload?.data || payload;
 			})
-			// END
+		// END
+
 
 			// Update
-			.addCase(updateProvince.pending, (state) => {
+			.addCase(updateCity.pending, (state) => {
 				state.loading = true;
-				state.isUpdated= false;
+				state.isUpdated = false;
 				state.error = undefined;
 			})
-			.addCase(updateProvince.fulfilled, (state) => {
+			.addCase(updateCity.fulfilled, (state) => {
 				state.loading = false;
 				state.isUpdated = true;
 				state.isEdited = false;
 				state.showModal = false;
 			})
-			.addCase(updateProvince.rejected, (state, action) => {
+			.addCase(updateCity.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
 				state.isUpdated = false;
-				state.province = undefined
-				state.error = payload?.data?.errorResponse?.errmsg;
-			})
-			// END
-
-			// Delete
-			.addCase(deleteProvince.pending, (state) => {
-				state.loading = true;
-				state.isDeleted = false;
-				state.error = undefined;
-			})
-			.addCase(deleteProvince.fulfilled, (state) => {
-				state.loading = false;
-				state.isDeleted = true;
-				state.showModalDelete = false;
-			})
-			.addCase(deleteProvince.rejected, (state, action) => {
-				const { payload }: any = action
-				state.loading = false;
-				state.isDeleted = false;
+				state.city = undefined
 				state.error = payload?.data?.errorResponse?.errmsg;
 			})
 		// END
 
-			// Province Actions
-			.addCase(getProvinceOptions.pending, (state) => {
+
+			// Delete
+			.addCase(deleteCity.pending, (state) => {
 				state.loading = true;
+				state.isDeleted = false;
 				state.error = undefined;
 			})
-			.addCase(getProvinceOptions.fulfilled, (state, action) => {
-				const { payload }: any = action
-				state.provinceOptions = payload?.data
+			.addCase(deleteCity.fulfilled, (state) => {
 				state.loading = false;
+				state.isDeleted = true;
+				state.showModalDelete = false;
 			})
-			.addCase(getProvinceOptions.rejected, (state, action) => {
+			.addCase(deleteCity.rejected, (state, action) => {
 				const { payload }: any = action
 				state.loading = false;
+				state.isDeleted = false;
 				state.error = payload?.data?.errorResponse?.errmsg;
 			})
 		// END
@@ -217,6 +202,6 @@ export const provinceSlice = createSlice({
 	},
 });
 
-// export default provinceSlice.reducer;
+// export default citySlice.reducer;
 
-export const { reducer: ProvinceReducer, actions: provinceAction } = provinceSlice;
+export const { reducer: CityReducer, actions: cityAction } = citySlice;

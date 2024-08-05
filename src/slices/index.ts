@@ -13,6 +13,7 @@ import ProfileReducer from "./auth/profile/reducer";
 import EcommerceReducer from "./ecommerce/reducer";
 
 import { ProvinceReducer } from "#/pages/Data_Master/administrative/Province/store/province.slice";
+import { CityReducer } from "#/pages/Data_Master/administrative/City/store/city.slice";
 
 
 
@@ -21,5 +22,6 @@ export const rootReducer: any = combineReducers({
 	Auth: loginReducer,
 	Profile: ProfileReducer,
 	Ecommerce: EcommerceReducer,
-	Province: ProvinceReducer
+	Province: ProvinceReducer,
+	City: CityReducer,
 });

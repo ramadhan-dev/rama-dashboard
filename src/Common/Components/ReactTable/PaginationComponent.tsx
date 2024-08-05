@@ -13,6 +13,7 @@ const PaginationComponent: React.FC<IPaginationComponent> = ({ tableLib, Paginat
 	const totalPagination = Math.ceil(totalData / tableLib?.getState().pagination.pageSize);
 
 	const [itemsPagination, setItemPagination] = useState<any[]>([])
+	// @ts-ignore: Unreachable code error
 	const [currentPage, setCurrentPage] = useState<number>(0)
 	let pageIndex = tableLib?.getState().pagination.pageIndex
 	let MINIMAL_PAGE_ITEM_COUNT = 9;

@@ -8,6 +8,7 @@ export const GET_ALL_PROVINCE = API_URL + "/province/get-all-province";
 export const GET_ONE_PROVINCE = API_URL + "/province/get-province";
 export const UPDATE_PROVINCE = API_URL + "/province/update-province";
 export const DELETE_PROVINCE = API_URL + "/province/delete-province";
+export const GET_PROVINCE_OPTIONS = API_URL + "/province/get-province-options";
 
 const api = new APIClient();
 
@@ -15,4 +16,6 @@ export const AddNewProvince = (data: masterAdministrative) => api.create(ADD_PRO
 export const AllProvince = (payload: paginationPayload) => api.get(GET_ALL_PROVINCE, payload);
 export const OneProvince = (id: string) => api.get(GET_ONE_PROVINCE, { id });
 export const updateProvinceApi = (payload: UploadProps) => api.put(UPDATE_PROVINCE, payload);
-export const deleteProvinceApi = (id: string|undefined) => api.delete(DELETE_PROVINCE, {  data:{id}  });
+export const deleteProvinceApi = (id: string | undefined) => api.delete(DELETE_PROVINCE, { data: { id } });
+// @ts-ignore: Unreachable code error
+export const provinceOptions = (id: string | undefined) => api.get(GET_PROVINCE_OPTIONS, {})

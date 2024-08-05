@@ -42,6 +42,7 @@ export function mockAPI({
 }
 
 export function useMockAPI(
+	// @ts-ignore: Unreachable code error
 	query = "",
 	{
 		pagination: { limit = 10, skip = 0 } = {},

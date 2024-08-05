@@ -1,4 +1,4 @@
-import { AddNewProvince, AllProvince, deleteProvinceApi, OneProvince, updateProvinceApi } from './../api/province_api'
+import { AddNewProvince, AllProvince, deleteProvinceApi, OneProvince, provinceOptions, updateProvinceApi } from './../api/province_api'
 import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
@@ -76,6 +76,21 @@ export const deleteProvince = createAsyncThunk('deleteProvince', async (payload:
 	try {
 		const response =  await deleteProvinceApi(payload)
 		toast.success("Event Delete Successfully", { autoClose: 2000 });
+		return response
+	} catch (error: any) {
+		toast.error("Event Delete Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
+	}
+});
+
+
+
+/**
+ * API Register
+ */
+export const getProvinceOptions = createAsyncThunk('getProvinceOptions', async (payload: string | undefined, { rejectWithValue }) => {
+	try {
+		const response = await provinceOptions(payload)
 		return response
 	} catch (error: any) {
 		toast.error("Event Delete Failed", { autoClose: 2000 });

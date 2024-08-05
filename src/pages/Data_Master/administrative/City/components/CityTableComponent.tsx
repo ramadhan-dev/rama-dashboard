@@ -1,19 +1,19 @@
 import { paginationPayload } from "#/interfaces/common";
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProvince, getAllProvince, getOneProvince } from "../store/province.asyncAction";
+import { deleteCity, getAllCity, getOneCity } from "../store/city.asyncAction";
 import ReactTableComponent from "#/Common/Components/ReactTable";
 import { usePagination } from "#/Common/Components/ReactTable/hooks/usePagination";
 import { useSorting } from "#/Common/Components/ReactTable/hooks/useSorting";
 import { useFilter } from "#/Common/Components/ReactTable/hooks/useFilter";
 import moment from 'moment';
 import DeleteModal from "#/Common/DeleteModal";
-import { provinceAction } from "../store/province.slice";
+import { cityAction } from "../store/city.slice";
 
-const ProvinceTableComponent = () => {
+const CityTableComponent = () => {
 
 	const dispatch = useDispatch<any>();
-	const { getDataLoading, provinceList, meta, isUpdated, isDeleted, showModalDelete, dataSelected } = useSelector((state: any) => state?.masterState?.Province);
+	const { getDataLoading, cityList, meta, isUpdated, isDeleted, showModalDelete, dataSelected } = useSelector((state: any) => state?.masterState?.City);
 
 
 	const { limit, onPaginationChange, skip, pagination } = usePagination();
@@ -34,7 +34,7 @@ const ProvinceTableComponent = () => {
 			total: 0,
 			pageCount: 0
 		};
-		dispatch(getAllProvince(resetMeta));
+		dispatch(getAllCity(resetMeta));
 	}, [limit, skip, sorting, field, order, filter])
 
 
@@ -48,7 +48,7 @@ const ProvinceTableComponent = () => {
 					}
 				}
 			}
-			dispatch(getAllProvince(newMeta));
+			dispatch(getAllCity(newMeta));
 		}
 	}, [isUpdated, isDeleted])
 
@@ -58,11 +58,11 @@ const ProvinceTableComponent = () => {
 	 * @param id
 	 */
 	const editData = (id: string) => {
-		dispatch(getOneProvince(id));
+		dispatch(getOneCity(id));
 	}
 
 	const onDelete = () => {
-		dispatch(deleteProvince(dataSelected));
+		dispatch(deleteCity(dataSelected));
 	}
 
 
@@ -86,6 +86,16 @@ const ProvinceTableComponent = () => {
 			enableSorting: true,
 			cell: ({ row }: any) => {
 				return row.original['name']
+			}
+		},
+		{
+			id: "provinceName",
+			header: "Province",
+			size: 250,
+			minSize: 100,
+			enableSorting: true,
+			cell: ({ row }: any) => {
+				return row.original['ProvinceName']
 			}
 		},
 		{
@@ -117,8 +127,8 @@ const ProvinceTableComponent = () => {
 
 						<button
 							onClick={() => {
-								dispatch(provinceAction.setShowModalDelete(true))
-								dispatch(provinceAction.setDataSelected(id))
+								dispatch(cityAction.setShowModalDelete(true))
+								dispatch(cityAction.setDataSelected(id))
 							}}
 							type="button"
 							className="bg-white text-red-500 btn border-red-500 hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-custom-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-custom-100 dark:bg-zink-700 dark:hover:bg-red-500 dark:ring-red-400/20 dark:focus:bg-red-500"
@@ -131,12 +141,12 @@ const ProvinceTableComponent = () => {
 
 	return (
 		<React.Fragment>
-			<DeleteModal show={showModalDelete} onHide={() => dispatch(provinceAction.setShowModalDelete(false))} onDelete={() => onDelete()} />
-			{provinceList?.length > 0 && !getDataLoading && (
+			<DeleteModal show={showModalDelete} onHide={() => dispatch(cityAction.setShowModalDelete(false))} onDelete={() => onDelete()} />
+			{cityList?.length > 0 && !getDataLoading && (
 				<ReactTableComponent
 					cols={cols}
 					// // columns={columns}
-					data={provinceList}
+					data={cityList}
 					loading={getDataLoading}
 					onPaginationChange={onPaginationChange}
 					onSortingChange={onSortingChange}
@@ -159,4 +169,4 @@ const ProvinceTableComponent = () => {
 	)
 }
 
-export default ProvinceTableComponent
+export default CityTableComponent
