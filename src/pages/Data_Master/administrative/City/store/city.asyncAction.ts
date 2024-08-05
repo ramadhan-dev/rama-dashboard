@@ -1,4 +1,4 @@
-import { AddNewCity, AllCity, deleteCityApi, OneCity, updateCityApi } from './../api/city_api'
+import { AddNewCity, AllCity, cityOptions, deleteCityApi, OneCity, updateCityApi } from './../api/city_api'
 import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
@@ -76,6 +76,21 @@ export const deleteCity = createAsyncThunk('deleteCity', async (payload: string|
 	try {
 		const response =  await deleteCityApi(payload)
 		toast.success("Event Delete Successfully", { autoClose: 2000 });
+		return response
+	} catch (error: any) {
+		toast.error("Event Delete Failed", { autoClose: 2000 });
+		return rejectWithValue(error?.data || error);
+	}
+});
+
+
+
+/**
+ * GET Data City options
+ */
+export const getCityOptions = createAsyncThunk('getCityOptions', async (payload: string | undefined, { rejectWithValue }) => {
+	try {
+		const response = await cityOptions(payload)
 		return response
 	} catch (error: any) {
 		toast.error("Event Delete Failed", { autoClose: 2000 });

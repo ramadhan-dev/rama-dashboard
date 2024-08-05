@@ -41,6 +41,10 @@ export interface City extends Province {
 	province_code:any
 }
 
+export interface District extends City {
+	city_code: any
+}
+
 // END
 
 

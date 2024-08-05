@@ -14,6 +14,7 @@ import EcommerceReducer from "./ecommerce/reducer";
 
 import { ProvinceReducer } from "#/pages/Data_Master/administrative/Province/store/province.slice";
 import { CityReducer } from "#/pages/Data_Master/administrative/City/store/city.slice";
+import { DistrictReducer } from "#/pages/Data_Master/administrative/District/store/district.slice";
 
 
 
@@ -24,4 +25,5 @@ export const rootReducer: any = combineReducers({
 	Ecommerce: EcommerceReducer,
 	Province: ProvinceReducer,
 	City: CityReducer,
+	District: DistrictReducer,
 });

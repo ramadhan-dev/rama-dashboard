@@ -5,9 +5,8 @@ import React, { lazy } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { cityAction } from './store/city.slice';
-import AddCityComponents from "./components/AddCityComponents.tsx";
 
-// const AddCityComponents = lazy(() => import("./components/AddCityComponents"));
+const AddCityComponents = lazy(() => import("./components/AddCityComponents"));
 const DownloadButtonComponent = lazy(() => import("#/Common/Components/Button/DownloadButtonComponent"));
 const CityTableComponent = lazy(() => import("./components/CityTableComponent.tsx"));
 
