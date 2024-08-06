@@ -89,6 +89,16 @@ const CategoryTableComponent = () => {
 			}
 		},
 		{
+			id: "description",
+			header: "Description",
+			size: 250,
+			minSize: 100,
+			enableSorting: true,
+			cell: ({ row }: any) => {
+				return row.original['description']
+			}
+		},
+		{
 			id: "status",
 			header: "Status",
 			minSize: 100,

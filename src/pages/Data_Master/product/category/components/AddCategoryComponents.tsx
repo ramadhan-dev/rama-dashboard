@@ -12,6 +12,7 @@ import ConfirmationModal from "#/Common/ConfirmationModal";
 import { categoryAction } from "../store/category.slice";
 import CustomSwitch from "#/Common/Components/Form/switch";
 import { createNewCategory, updateProductCategory } from "../store/category.asyncAction";
+import TextArea from "#/Common/Components/Form/TextArea";
 
 
 export const validationSchema = Yup.object({
@@ -28,7 +29,8 @@ const AddCategoryComponents = () => {
 	const initialValues: ProductAtt = {
 			code: isEdited ? category?.code : '',
 			name: isEdited ? category?.name : '' ,
-			status:  isEdited ? category.status : true
+			status:  isEdited ? category.status : true,
+			description:  isEdited ? category.description : '',
 	}
 
 	return (
@@ -77,6 +79,8 @@ const AddCategoryComponents = () => {
 								<Form>
 									<FormField label="Code" name="code" />
 									<FormField label="Name" name="name" />
+									<TextArea label="Description" name="description" />
+
 									<div className="mb-4">
 										<CustomSwitch
 											label="Status"

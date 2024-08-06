@@ -71,7 +71,7 @@ const SizeTableComponent = () => {
 		{
 			id: "code",
 			header: "Code",
-			size: 250,
+			size: 150,
 			minSize: 100,
 			enableSorting: true,
 			cell: ({ row }: any) => {
@@ -81,11 +81,21 @@ const SizeTableComponent = () => {
 		{
 			id: "name",
 			header: "Name",
-			size: 250,
+			size: 200,
 			minSize: 100,
 			enableSorting: true,
 			cell: ({ row }: any) => {
 				return row.original['name']
+			}
+		},
+		{
+			id: "description",
+			header: "Description",
+			size: 250,
+			minSize: 100,
+			enableSorting: true,
+			cell: ({ row }: any) => {
+				return row.original['description']
 			}
 		},
 		{

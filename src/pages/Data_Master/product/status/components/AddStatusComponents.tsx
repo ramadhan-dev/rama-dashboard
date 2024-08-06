@@ -9,9 +9,9 @@ import FormField from "#/Common/Components/Form";
 
 import React, { useEffect } from "react";
 import ConfirmationModal from "#/Common/ConfirmationModal";
-import { sizeAction } from "../store/size.slice";
+import { statusAction } from "../store/status.slice";
 import CustomSwitch from "#/Common/Components/Form/switch";
-import { createNewSize, updateProductSize } from "../store/size.asyncAction";
+import { createNewStatus, updateProductStatus } from "../store/status.asyncAction";
 import TextArea from "#/Common/Components/Form/TextArea";
 
 
@@ -22,25 +22,25 @@ export const validationSchema = Yup.object({
 		.required('Email is required'),
 });
 
-const AddSizeComponents = () => {
+const AddStatusComponents = () => {
 	const dispatch = useDispatch<any>();
-	const { isEdited, error, showModalAdd, size, showModalConfirmation } = useSelector((state: any) => state?.masterState?.ProductSize);
+	const { isEdited, error, showModalAdd, status, showModalConfirmation } = useSelector((state: any) => state?.masterState?.ProductStatus);
 
 	const initialValues: ProductAtt = {
-		code: isEdited ? size?.code : '',
-		name: isEdited ? size?.name : '',
-		description: isEdited ? size?.description : '',
-		status: isEdited ? size.status : true
+		code: isEdited ? status?.code : '',
+		name: isEdited ? status?.name : '',
+		description: isEdited ? status?.description : '',
+		status: isEdited ? status.status : true
 	}
 
 	return (
 		<>
-			<Modal show={showModalAdd} onHide={() => dispatch(sizeAction.setOpenModalAdd(false))} modal-center="true"
+			<Modal show={showModalAdd} onHide={() => dispatch(statusAction.setOpenModalAdd(false))} modal-center="true"
 				className="fixed flex flex-col transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4"
 				dialogClassName="w-screen md:w-[30rem] bg-white shadow rounded-md dark:bg-zink-600">
 				<Modal.Header className="flex items-center justify-between p-4 border-b dark:border-zink-500"
 					closeButtonClass="transition-all duration-200 ease-linear text-slate-400 hover:text-red-500">
-					<Modal.Title className="text-16">{isEdited ? "Edit Size" : "Add Size"}</Modal.Title>
+					<Modal.Title className="text-16">{isEdited ? "Edit Status" : "Add Status"}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
 					{error && (
@@ -55,11 +55,11 @@ const AddSizeComponents = () => {
 						validationSchema={validationSchema}
 						onSubmit={(values) => {
 							if (isEdited) {
-								values = { ...values, ...{ id: size._id } }
-								dispatch(updateProductSize(values))
+								values = { ...values, ...{ id: status._id } }
+								dispatch(updateProductStatus(values))
 
 							} else {
-								dispatch(createNewSize(values))
+								dispatch(createNewStatus(values))
 							}
 						}}
 					>
@@ -71,7 +71,7 @@ const AddSizeComponents = () => {
 							useEffect(() => {
 								if (showModalAdd) {
 									resetForm()
-									dispatch(sizeAction.setFormError(''))
+									dispatch(statusAction.setFormError(''))
 								}
 							}, [showModalAdd]);
 
@@ -93,15 +93,15 @@ const AddSizeComponents = () => {
 
 									<div className="mt-10 flex justify-between gap-5">
 										<ButtonComponent
-											onClick={() => dispatch(sizeAction.setShowModalUpdate(true))}
+											onClick={() => dispatch(statusAction.setShowModalUpdate(true))}
 											title={isEdited ? "EDIT" : "SAVE"}
 											loading={false} />
 										<CustomButtonComponent className="btn-horizontal-danger" title="Close" onClick={() => {
 											resetForm()
-											dispatch(sizeAction.setOpenModalAdd(false))
+											dispatch(statusAction.setOpenModalAdd(false))
 										}} />
 									</div>
-									<ConfirmationModal show={showModalConfirmation} onHide={() => dispatch(sizeAction.setShowModalUpdate(false))} isEdited={isEdited} />
+									<ConfirmationModal show={showModalConfirmation} onHide={() => dispatch(statusAction.setShowModalUpdate(false))} isEdited={isEdited} />
 
 								</Form>
 							)
@@ -115,6 +115,6 @@ const AddSizeComponents = () => {
 }
 
 
-const AddSizeMemo = React.memo(AddSizeComponents)
+const AddStatusMemo = React.memo(AddStatusComponents)
 
-export default AddSizeMemo
+export default AddStatusMemo

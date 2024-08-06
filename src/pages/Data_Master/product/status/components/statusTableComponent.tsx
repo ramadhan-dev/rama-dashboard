@@ -7,13 +7,13 @@ import { useSorting } from "#/Common/Components/ReactTable/hooks/useSorting";
 import { useFilter } from "#/Common/Components/ReactTable/hooks/useFilter";
 import moment from 'moment';
 import DeleteModal from "#/Common/DeleteModal";
-import { deleteBrand, getAllBrand, getOneBrand, updateStatus } from "../store/brand.asyncAction";
-import { brandAction } from "../store/brand.slice";
+import { deleteStatus, getAllStatus, getOneStatus, updateStatus } from "../store/status.asyncAction";
+import { statusAction } from "../store/status.slice";
 
-const BrandTableComponent = () => {
+const StatusTableComponent = () => {
 
 	const dispatch = useDispatch<any>();
-	const { getDataLoading, data, meta, showModalDelete, dataSelected, isRefresh } = useSelector((state: any) => state?.masterState?.ProductBrand);
+	const { getDataLoading, data, meta, showModalDelete, dataSelected, isRefresh, buttonDisable } = useSelector((state: any) => state?.masterState?.ProductStatus);
 
 
 	const { limit, onPaginationChange, skip, pagination } = usePagination();
@@ -34,7 +34,7 @@ const BrandTableComponent = () => {
 			total: 0,
 			pageCount: 0
 		};
-		dispatch(getAllBrand(resetMeta));
+		dispatch(getAllStatus(resetMeta));
 	}, [limit, skip, sorting, field, order, filter])
 
 
@@ -48,7 +48,7 @@ const BrandTableComponent = () => {
 					}
 				}
 			}
-			dispatch(getAllBrand(newMeta));
+			dispatch(getAllStatus(newMeta));
 		}
 	}, [isRefresh])
 
@@ -58,11 +58,11 @@ const BrandTableComponent = () => {
 	 * @param id
 	 */
 	const editData = (id: string) => {
-		dispatch(getOneBrand(id));
+		dispatch(getOneStatus(id));
 	}
 
 	const onDelete = () => {
-		dispatch(deleteBrand(dataSelected));
+		dispatch(deleteStatus(dataSelected));
 	}
 
 
@@ -71,7 +71,7 @@ const BrandTableComponent = () => {
 		{
 			id: "code",
 			header: "Code",
-			size: 250,
+			size: 150,
 			minSize: 100,
 			enableSorting: true,
 			cell: ({ row }: any) => {
@@ -81,7 +81,7 @@ const BrandTableComponent = () => {
 		{
 			id: "name",
 			header: "Name",
-			size: 250,
+			size: 200,
 			minSize: 100,
 			enableSorting: true,
 			cell: ({ row }: any) => {
@@ -110,6 +110,7 @@ const BrandTableComponent = () => {
 				return (
 					<button
 						type="button"
+						disabled={buttonDisable}
 						className={`relative inline-flex items-center  h-6 rounded-full w-11 ${row.original['status'] ? 'bg-blue-600' : 'bg-red-400'}`}
 						onClick={() => dispatch(updateStatus({ 'id': row.original['_id'] }))}
 					>
@@ -151,8 +152,8 @@ const BrandTableComponent = () => {
 
 						<button
 							onClick={() => {
-								dispatch(brandAction.setShowModalDelete(true))
-								dispatch(brandAction.setDataSelected(id))
+								dispatch(statusAction.setShowModalDelete(true))
+								dispatch(statusAction.setDataSelected(id))
 							}}
 							type="button"
 							className="bg-white text-red-500 btn border-red-500 hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-custom-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-custom-100 dark:bg-zink-700 dark:hover:bg-red-500 dark:ring-red-400/20 dark:focus:bg-red-500"
@@ -165,7 +166,7 @@ const BrandTableComponent = () => {
 
 	return (
 		<React.Fragment>
-			<DeleteModal show={showModalDelete} onHide={() => dispatch(brandAction.setShowModalDelete(false))} onDelete={() => onDelete()} />
+			<DeleteModal show={showModalDelete} onHide={() => dispatch(statusAction.setShowModalDelete(false))} onDelete={() => onDelete()} />
 			{data?.length > 0 && !getDataLoading && (
 				<ReactTableComponent
 					cols={cols}
@@ -193,4 +194,4 @@ const BrandTableComponent = () => {
 	)
 }
 
-export default BrandTableComponent
+export default StatusTableComponent

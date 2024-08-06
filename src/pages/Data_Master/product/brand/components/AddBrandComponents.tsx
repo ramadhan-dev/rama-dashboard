@@ -12,6 +12,7 @@ import ConfirmationModal from "#/Common/ConfirmationModal";
 import { brandAction } from "../store/brand.slice";
 import CustomSwitch from "#/Common/Components/Form/switch";
 import { createNewBrand, updateProductBrand } from "../store/brand.asyncAction";
+import TextArea from "#/Common/Components/Form/TextArea";
 
 
 export const validationSchema = Yup.object({
@@ -26,9 +27,11 @@ const AddBrandComponents = () => {
 	const { isEdited, error, showModalAdd, brand, showModalConfirmation } = useSelector((state: any) => state?.masterState?.ProductBrand);
 
 	const initialValues: ProductAtt = {
-			code: isEdited ? brand?.code : '',
-			name: isEdited ? brand?.name : '' ,
-			status:  isEdited ? brand.status : true
+		code: isEdited ? brand?.code : '',
+		name: isEdited ? brand?.name : '',
+		status: isEdited ? brand.status : true,
+		description: isEdited ? brand.description : '',
+
 	}
 
 	return (
@@ -77,6 +80,8 @@ const AddBrandComponents = () => {
 								<Form>
 									<FormField label="Code" name="code" />
 									<FormField label="Name" name="name" />
+									<TextArea label="Description" name="description" />
+
 									<div className="mb-4">
 										<CustomSwitch
 											label="Status"

@@ -21,7 +21,7 @@ const store = configureStore({ reducer: combineReducers({
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-			<ToastContainer closeButton={false} limit={1} />
+			<ToastContainer closeButton={true}  />
 
       <BrowserRouter basename={''}>
         <App />
