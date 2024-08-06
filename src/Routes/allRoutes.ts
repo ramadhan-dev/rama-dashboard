@@ -26,6 +26,7 @@ const ProductBrandComponent = lazy(() => import("#/pages/Data_Master/product/bra
 const ProductCategoryComponent = lazy(() => import("#/pages/Data_Master/product/category"));
 const ProductSizeComponent = lazy(() => import("#/pages/Data_Master/product/size"));
 const ProductStatusComponent = lazy(() => import("#/pages/Data_Master/product/status"));
+const ProductTagComponent = lazy(() => import("#/pages/Data_Master/product/tag"));
 
 
 interface RouteObject {
@@ -53,6 +54,7 @@ const authProtectedRoutes: Array<RouteObject> = [
 	{ path: "/data-master/product-category", component: ProductCategoryComponent },
 	{ path: "/data-master/product-size", component: ProductSizeComponent },
 	{ path: "/data-master/product-status", component: ProductStatusComponent },
+	{ path: "/data-master/product-tag", component: ProductTagComponent },
 	{ path: "/data-master/product-type", component: UserProfile },
 	{ path: "/data-master/product-visibility", component: UserProfile },
 

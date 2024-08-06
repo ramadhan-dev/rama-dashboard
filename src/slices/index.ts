@@ -28,6 +28,7 @@ import { ProductBrandReducer } from "#/pages/Data_Master/product/brand/store/bra
 import { ProductCategoryReducer } from "#/pages/Data_Master/product/category/store/category.slice";
 import { ProductSizeReducer } from "#/pages/Data_Master/product/size/store/size.slice";
 import { ProductStatusReducer } from "#/pages/Data_Master/product/status/store/status.slice";
+import { ProductTagReducer } from "#/pages/Data_Master/product/tag/store/tag.slice";
 
 
 
@@ -45,4 +46,6 @@ export const rootReducer: any = combineReducers({
 	ProductCategory: ProductCategoryReducer,
 	ProductSize: ProductSizeReducer,
 	ProductStatus: ProductStatusReducer,
+	ProductTag: ProductTagReducer,
+
 });

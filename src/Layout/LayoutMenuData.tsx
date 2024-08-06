@@ -96,9 +96,9 @@ const menuData: any = [
 				parentId: "master-data",
 				subItems: [
 					{
-						id: 'product-list',
-						label: 'Product List',
-						link: '/data-master/product',
+						id: 'product-tag',
+						label: 'Tagging',
+						link: '/data-master/product-tag',
 						parentId: "product"
 					},
 					{
