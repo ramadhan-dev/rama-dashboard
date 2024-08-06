@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getAccessToken } from "./jwt-token-access/accessToken";
 import { ACCESS_KEY } from "#/Common/constants/env";
+import secureLocalStorage from "react-secure-storage";
 axios.defaults.baseURL = "";
 
 // content type
@@ -18,24 +19,30 @@ axios.interceptors.response.use(
   },
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    let message;
-		switch (error?.response?.status) {
-      case 500:
-				message = error?.response;
-        break;
-      case 401:
-				message = error?.response;
-        break;
-			case 404:
-			case 400:
-			case 409:
-				// message = "Sorry! the data you are looking for could not be found";
-				message = error?.response?.data;
-        break;
-      default:
-        message = error.message || error;
+
+		if (error?.response?.status === 401 && error?.response?.data?.data === 'Token is not valid'){
+			secureLocalStorage.clear()
+			window.location.href = '/'
+		} else {
+			let message;
+			switch (error?.response?.status) {
+				case 500:
+					message = error?.response;
+					break;
+				case 401:
+					message = error?.response;
+					break;
+				case 404:
+				case 400:
+				case 409:
+					message = error?.response?.data;
+					break;
+				default:
+					message = error.message || error;
 			}
 			return Promise.reject(message);
+		}
+
   }
 );
 

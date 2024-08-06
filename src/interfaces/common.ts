@@ -52,6 +52,16 @@ export interface SubDistrict extends District {
 // END
 
 
+// Product
+export interface ProductAtt {
+	_id?:string
+	name: string
+	code: string
+	status: boolean
+}
+// END
+
+
 
 
 /**

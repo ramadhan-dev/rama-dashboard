@@ -56,6 +56,88 @@ const menuData: any = [
 								parentId: "administratif"
 							},
 				]
+			},
+			{
+				id: 'employee',
+				label: 'Employee',
+				link: '/',
+				parentId: "master-data",
+				subItems: [
+					{
+						id: 'employee-list',
+						label: 'Employee',
+						link: '/data-master/employee',
+						parentId: "employee"
+					},
+					{
+						id: 'employee-city',
+						label: 'City',
+						link: '/data-master/city',
+						parentId: "employee"
+					},
+					{
+						id: 'employee-district',
+						label: 'district',
+						link: '/data-master/district',
+						parentId: "employee"
+					},
+					{
+						id: 'employee-sub-district',
+						label: 'sub-district',
+						link: '/data-master/sub-district',
+						parentId: "employee"
+					},
+				]
+			},
+			{
+				id: 'product',
+				label: 'Product',
+				link: '/',
+				parentId: "master-data",
+				subItems: [
+					{
+						id: 'product-list',
+						label: 'Product List',
+						link: '/data-master/product',
+						parentId: "product"
+					},
+					{
+						id: 'product-brand',
+						label: 'Brand',
+						link: '/data-master/product-brand',
+						parentId: "product"
+					},
+					{
+						id: 'product-category',
+						label: 'Category',
+						link: '/data-master/product-category',
+						parentId: "product"
+					},
+					{
+						id: 'product-size',
+						label: 'Size',
+						link: '/data-master/product-size',
+						parentId: "product"
+					},
+					{
+						id: 'product-status',
+						label: 'Status',
+						link: '/data-master/product-status',
+						parentId: "product"
+					},
+					{
+						id: 'product-type',
+						label: 'Type',
+						link: '/data-master/product-type',
+						parentId: "product"
+					},
+					{
+						id: 'product-visibility',
+						label: 'Visibility',
+						link: '/data-master/product-visibility',
+						parentId: "product"
+					},
+				]
 			}
 		]
 	},

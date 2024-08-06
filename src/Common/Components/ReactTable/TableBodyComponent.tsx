@@ -15,8 +15,9 @@ const TableBodyComponent: React.FC<ITableBodyComponent> = ({ tableLib, tbodyclas
 				return (
 					<tr key={row.id} className={trclassName}>
 						{row.getVisibleCells().map((cell:any) => {
+							const { columnDef } = cell.column;
 							return (
-								<td key={cell.id} className={tdclassName}>
+								<td key={cell.id} className={tdclassName} style={{ textAlign: columnDef.bodyAlign }}>
 									{flexRender(
 										cell.column.columnDef.cell,
 										cell.getContext()

@@ -23,7 +23,6 @@ const CityComponent = () => {
 	return (
 		<React.Fragment>
 			<BreadCrumb title='' pageTitle='Data Master City' />
-			{/* <DeleteModal show={deleteModal} onHide={deleteToggle} onDelete={handleDelete} /> */}
 			<div className="card" id="employeeTable">
 				<div className="card-body">
 					<div className="flex items-center gap-3 mb-4">
