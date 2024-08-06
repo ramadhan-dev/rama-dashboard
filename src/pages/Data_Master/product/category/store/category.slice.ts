@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductAtt, paginationPayload } from "#/interfaces/common";
-import { createNewBrand, deleteBrand, getAllBrand, getOneBrand, updateProductBrand, updateStatus } from "./brand.asyncAction";
+import { createNewCategory, deleteCategory, getAllCategory, getOneCategory, updateProductCategory, updateStatus } from "./category.asyncAction";
 
-interface BrandState {
+interface CategoryState {
 	isEdited: boolean;
 	pageTitle: string;
 	showModalAdd: boolean;
@@ -13,15 +13,16 @@ interface BrandState {
 	getDataLoading: boolean;
 	meta: paginationPayload
 	error: string | undefined
-	brand: ProductAtt | undefined
+	category: ProductAtt | undefined
 	dataSelected: string | undefined;
-	buttonDisable:boolean
+	buttonDisable: boolean;
+
 }
 
 
-const initialState: BrandState = {
+const initialState: CategoryState = {
 	isEdited: false,
-	pageTitle: "Brand List",
+	pageTitle: "Category List",
 	showModalAdd: false,
 	showModalDelete: false,
 	showModalConfirmation: false,
@@ -29,7 +30,7 @@ const initialState: BrandState = {
 	isRefresh:false,
 	getDataLoading: false,
 	error: undefined,
-	brand:undefined,
+	category:undefined,
 	dataSelected: undefined,
 	buttonDisable:false,
 	meta: {
@@ -46,41 +47,41 @@ const initialState: BrandState = {
 };
 
 
-export const brandSlice = createSlice({
-	name: "brand",
+export const categorySlice = createSlice({
+	name: "category",
 	initialState,
 	reducers: {
-		setEdit(state: BrandState, action: PayloadAction<boolean>) {
+		setEdit(state: CategoryState, action: PayloadAction<boolean>) {
 			state.isEdited = action.payload;
 		},
-		setPageTitle(state: BrandState, action: PayloadAction<string>) {
+		setPageTitle(state: CategoryState, action: PayloadAction<string>) {
 			state.pageTitle = action.payload;
 		},
-		setOpenModalAdd(state: BrandState, action: PayloadAction<boolean>) {
+		setOpenModalAdd(state: CategoryState, action: PayloadAction<boolean>) {
 			state.showModalAdd = action.payload;
 		},
-		setShowModalDelete(state: BrandState, action: PayloadAction<boolean>) {
+		setShowModalDelete(state: CategoryState, action: PayloadAction<boolean>) {
 			state.showModalDelete = action.payload;
 		},
-		setShowModalUpdate(state: BrandState, action: PayloadAction<boolean>) {
+		setShowModalUpdate(state: CategoryState, action: PayloadAction<boolean>) {
 			state.showModalConfirmation = action.payload;
 		},
-		setFormError(state: BrandState, action: PayloadAction<string>) {
+		setFormError(state: CategoryState, action: PayloadAction<string>) {
 			state.error = action.payload;
 		},
-		setDataSelected(state: BrandState, action: PayloadAction<string>) {
+		setDataSelected(state: CategoryState, action: PayloadAction<string>) {
 			state.dataSelected = action.payload;
-		},
+		}
 	},
 	extraReducers: (builder) => {
 		builder
 
 			// Get All data
-			.addCase(getAllBrand.pending, (state) => {
+			.addCase(getAllCategory.pending, (state) => {
 				state.getDataLoading = true;
 				state.error = undefined;
 			})
-			.addCase(getAllBrand.fulfilled, (state, action) => {
+			.addCase(getAllCategory.fulfilled, (state, action) => {
 				const { payload }: any = action
 				state.getDataLoading = false;
 				state.data = payload?.data || payload
@@ -94,7 +95,7 @@ export const brandSlice = createSlice({
 				}
 				state.meta = { ...state?.meta, ...pagination }
 			})
-			.addCase(getAllBrand.rejected, (state, action) => {
+			.addCase(getAllCategory.rejected, (state, action) => {
 				const { payload }: any = action
 				state.getDataLoading = false;
 				state.error = payload?.data || payload;
@@ -103,16 +104,16 @@ export const brandSlice = createSlice({
 
 
 			// Add New
-			.addCase(createNewBrand.pending, (state) => {
+			.addCase(createNewCategory.pending, (state) => {
 				state.error = undefined;
 				state.isRefresh = false;
 			})
-			.addCase(createNewBrand.fulfilled, (state) => {
+			.addCase(createNewCategory.fulfilled, (state) => {
 				state.showModalAdd = false;
 				state.showModalConfirmation = false;
 				state.isRefresh = true;
 			})
-			.addCase(createNewBrand.rejected, (state, action) => {
+			.addCase(createNewCategory.rejected, (state, action) => {
 				const { payload }: any = action
 				state.showModalConfirmation = false;
 				state.error = payload?.data || payload;
@@ -122,20 +123,18 @@ export const brandSlice = createSlice({
 			// Update Status
 			.addCase(updateStatus.pending, (state) => {
 				state.error = undefined;
-				state.buttonDisable = true;
+				state.buttonDisable = true
 			})
 			.addCase(updateStatus.fulfilled, (state, action) => {
-				state.buttonDisable = false;
-
 				const index = state.data.findIndex(item => item._id === action.meta.arg.id);
+				state.buttonDisable = false
 				if (index !== -1) {
 					state.data[index].status = !state.data[index].status;
 				}
 			})
 			.addCase(updateStatus.rejected, (state, action) => {
-				state.buttonDisable = false;
-
 				const { payload }: any = action
+				state.buttonDisable = false
 				state.error = payload?.data || payload;
 			})
 		// END
@@ -143,38 +142,38 @@ export const brandSlice = createSlice({
 
 
 			// Get One
-			.addCase(getOneBrand.pending, (state) => {
+			.addCase(getOneCategory.pending, (state) => {
 				state.error = undefined;
 			})
-			.addCase(getOneBrand.fulfilled, (state, action) => {
+			.addCase(getOneCategory.fulfilled, (state, action) => {
 				const { payload }: any = action
 				state.isEdited = true;
 				state.showModalAdd = true;
-				state.brand = payload?.data
+				state.category = payload?.data
 			})
-			.addCase(getOneBrand.rejected, (state, action) => {
+			.addCase(getOneCategory.rejected, (state, action) => {
 				const { payload }: any = action
-				state.brand = undefined
+				state.category = undefined
 				state.error = payload?.data || payload;
 			})
 		// END
 
 
 			// Update
-			.addCase(updateProductBrand.pending, (state) => {
+			.addCase(updateProductCategory.pending, (state) => {
 				state.isRefresh = false;
 				state.error = undefined;
 			})
-			.addCase(updateProductBrand.fulfilled, (state) => {
+			.addCase(updateProductCategory.fulfilled, (state) => {
 				state.isRefresh = true;
 				state.isEdited = false;
 				state.showModalAdd = false;
 				state.showModalConfirmation= false;
 			})
-			.addCase(updateProductBrand.rejected, (state, action) => {
+			.addCase(updateProductCategory.rejected, (state, action) => {
 				const { payload }: any = action
 				state.isRefresh = false;
-				state.brand = undefined
+				state.category = undefined
 				state.showModalConfirmation = false;
 				state.error = payload?.data?.errorResponse?.errmsg;
 			})
@@ -182,15 +181,15 @@ export const brandSlice = createSlice({
 
 
 			// Delete
-			.addCase(deleteBrand.pending, (state) => {
+			.addCase(deleteCategory.pending, (state) => {
 				state.isRefresh = false;
 				state.error = undefined;
 			})
-			.addCase(deleteBrand.fulfilled, (state) => {
+			.addCase(deleteCategory.fulfilled, (state) => {
 				state.isRefresh = true;
 				state.showModalDelete = false;
 			})
-			.addCase(deleteBrand.rejected, (state, action) => {
+			.addCase(deleteCategory.rejected, (state, action) => {
 				const { payload }: any = action
 				state.isRefresh = false;
 				state.error = payload?.data?.errorResponse?.errmsg;
@@ -200,4 +199,4 @@ export const brandSlice = createSlice({
 	},
 });
 
-export const { reducer: ProductBrandReducer, actions: brandAction } = brandSlice;
+export const { reducer: ProductCategoryReducer, actions: categoryAction } = categorySlice;

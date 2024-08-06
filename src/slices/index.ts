@@ -25,6 +25,7 @@ import { SubDistrictReducer } from "#/pages/Data_Master/administrative/Sub_Distr
  * Product
  */
 import { ProductBrandReducer } from "#/pages/Data_Master/product/brand/store/brand.slice";
+import { ProductCategoryReducer } from "#/pages/Data_Master/product/category/store/category.slice";
 
 
 
@@ -38,5 +39,6 @@ export const rootReducer: any = combineReducers({
 	City: CityReducer,
 	District: DistrictReducer,
 	SubDistrict: SubDistrictReducer,
-	ProductBrand: ProductBrandReducer
+	ProductBrand: ProductBrandReducer,
+	ProductCategory: ProductCategoryReducer
 });
