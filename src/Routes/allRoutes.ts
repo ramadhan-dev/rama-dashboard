@@ -31,6 +31,12 @@ const ProductTypeComponent = lazy(() => import("#/pages/Data_Master/product/type
 const ProductVisibilityComponent = lazy(() => import("#/pages/Data_Master/product/visibility"));
 
 
+/**
+ * E-Commerce
+ */
+const ProductComponent = lazy(() => import("#/pages/Ecommerce/product"));
+const ProductCreateComponent = lazy(() => import("#/pages/Ecommerce/product/components/CreateProductComponent"));
+
 interface RouteObject {
   path: string;
   component: React.ComponentType<any>;
@@ -59,6 +65,11 @@ const authProtectedRoutes: Array<RouteObject> = [
 	{ path: "/data-master/product-tag", component: ProductTagComponent },
 	{ path: "/data-master/product-type", component: ProductTypeComponent },
 	{ path: "/data-master/product-visibility", component: ProductVisibilityComponent },
+
+
+	// E-Commerce
+	{ path: "/ecommerce/product", component: ProductComponent },
+	{ path: "/ecommerce/product/create", component: ProductCreateComponent },
 
 ];
 

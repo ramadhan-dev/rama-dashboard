@@ -1,28 +1,28 @@
 
 import BreadCrumb from "#/Common/BreadCrumb";
-import React, { useEffect } from "react";
+import React, { lazy, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-// const ProductOrderComponent = lazy(() => import("./partials/ProductOrderComponent"))
-// const OrderStatisticComponent = lazy(() => import("./partials/OrderStatisticComponent"))
-// const CounterComponent = lazy(() => import("./partials/CounterComponent"))
-// const SalesRevenueComponent = lazy(() => import("./partials/SalesRevenueComponent"))
-// const WelcomeComponent = lazy(() => import("./partials/WelcomeComponent"));
+const ProductOrderComponent = lazy(() => import("./partials/ProductOrderComponent"))
+const OrderStatisticComponent = lazy(() => import("./partials/OrderStatisticComponent"))
+const CounterComponent = lazy(() => import("./partials/CounterComponent"))
+const SalesRevenueComponent = lazy(() => import("./partials/SalesRevenueComponent"))
+const WelcomeComponent = lazy(() => import("./partials/WelcomeComponent"));
 
 const Ecommerce = () => {
 
 	const navigate = useNavigate();
 	useEffect(() => navigate("/dashboard"), [navigate]);
 
+
 	return (
 		<React.Fragment>
 			<BreadCrumb title='' pageTitle='Dashboards' />
 
-			{/* <WelcomeComponent />
+			<WelcomeComponent />
+{/*
+			<CounterComponent /> */}
 
-			<CounterComponent />
-
-
+{/*
 			<div className="grid grid-cols-12 gap-x-5">
 
 				<OrderStatisticComponent />
@@ -35,9 +35,11 @@ const Ecommerce = () => {
 
 			<ProductOrderComponent /> */}
 
+
+
 		</React.Fragment>
 	);
 };
 
 const MemoEcommerce = React.memo(Ecommerce)
-export { MemoEcommerce as default} ;
+export { MemoEcommerce as default };

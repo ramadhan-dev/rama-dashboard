@@ -54,10 +54,10 @@ const NavBar = () => {
             <nav className={`fixed inset-x-0 top-0 z-50 flex items-center justify-center h-20 py-3 [&.is-sticky]:bg-white dark:[&.is-sticky]:bg-zink-700 border-b border-slate-200 dark:border-zink-500 [&.is-sticky]:shadow-lg [&.is-sticky]:shadow-slate-200/25 dark:[&.is-sticky]:shadow-zink-500/30 navbar ${navClass}`} id="navbar">
                 <div className="container 2xl:max-w-[87.5rem] px-4 mx-auto flex items-center self-center w-full">
                     <div className="shrink-0">
-                        <Link to="/">
+                        {/* <Link to="/">
                             <img src={logoDark} alt="" className="block h-6 dark:hidden" />
                             <img src={logoLight} alt="" className="hidden h-6 dark:block" />
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className="mx-auto">
                         <ul id="navbar7" className={`absolute inset-x-0 z-20 items-center py-3 bg-white shadow-lg dark:bg-zink-600 dark:md:bg-transparent md:z-0 navbar-menu rounded-b-md md:shadow-none md:flex top-full ltr:ml-auto rtl:mr-auto md:relative md:bg-transparent md:rounded-none md:top-auto md:py-0 ${!isToggle ? "hidden" : ""}`}>

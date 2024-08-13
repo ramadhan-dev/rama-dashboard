@@ -59,12 +59,12 @@ const LandingPage = () => {
 		<React.Fragment>
 
 			<NavBar />
-			<Home />
-			<OurFeatures />
-			<AboutUs />
+			{/* <Home /> */}
+			{/* <OurFeatures /> */}
+			{/* <AboutUs /> */}
 			{/* <Pricing /> */}
-			<Contact />
-			<Footer />
+			{/* <Contact /> */}
+			{/* <Footer /> */}
 
 			<button id="back-to-top"
 				className="fixed flex items-center justify-center size-10 text-white bg-purple-500 rounded-md bottom-10 right-10"

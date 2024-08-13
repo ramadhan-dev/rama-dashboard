@@ -1,4 +1,4 @@
-import { MonitorCheck, FileArchive } from "lucide-react";
+import { MonitorCheck, FileArchive, PackageSearch, ShoppingBag } from "lucide-react";
 
 const menuData: any = [
 	{
@@ -69,24 +69,6 @@ const menuData: any = [
 						link: '/data-master/employee',
 						parentId: "employee"
 					},
-					{
-						id: 'employee-city',
-						label: 'City',
-						link: '/data-master/city',
-						parentId: "employee"
-					},
-					{
-						id: 'employee-district',
-						label: 'district',
-						link: '/data-master/district',
-						parentId: "employee"
-					},
-					{
-						id: 'employee-sub-district',
-						label: 'sub-district',
-						link: '/data-master/sub-district',
-						parentId: "employee"
-					},
 				]
 			},
 			{
@@ -141,6 +123,22 @@ const menuData: any = [
 			}
 		]
 	},
+	{
+		id: "ecommerce",
+		label: 'Ecommerce',
+		link: "#",
+		icon: <ShoppingBag />,
+		subItems: [
+			{
+				id: 'product',
+				label: 'Product',
+				icon: <PackageSearch />,
+				link: '/ecommerce/product',
+				parentId: 'ecommerce'
+			},
+		]
+	},
+
 ];
 
 export { menuData };
