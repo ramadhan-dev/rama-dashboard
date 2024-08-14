@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import Dropzone from "react-dropzone"
 import { UploadCloud } from "lucide-react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const CreateProductComponent = () => {
 
@@ -93,6 +95,12 @@ const CreateProductComponent = () => {
 		setSelectedBorderFiles(files)
 	}
 
+	const [value, setValue] = React.useState('');
+
+	const handleChange = (content: any) => {
+		setValue(content);
+	};
+
 	return (
 		<React.Fragment>
 			<BreadCrumb title='' pageTitle='Add New Product' />
@@ -151,8 +159,6 @@ const CreateProductComponent = () => {
 												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
 										</div>
 
-
-
 									</div>
 
 
@@ -174,13 +180,7 @@ const CreateProductComponent = () => {
 												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
 										</div>
 
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Brand</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
+
 
 
 									</div>
@@ -188,10 +188,18 @@ const CreateProductComponent = () => {
 
 								</div>
 
+								<div className="col-span-12 md:col-span-12 mb-10">
+									<ReactQuill
+										value={value}
+										onChange={handleChange}
+										style={{ height: '300px' }}
+									/>
+								</div>
+
 							</div>
 						</div>
 
-						<div className="grid grid-cols-12 gap-4 p-4" id="image" ref={el => sectionRefs.current.set('image', el)} >
+						<div className="grid grid-cols-12 gap-4 py-4" id="image" ref={el => sectionRefs.current.set('image', el)} >
 							<div className="col-span-12 md:col-span-4">
 								<h4 className="text-base font-bold">Upload new product images</h4>
 								<p className="mt-2">Upload your product image gallery here</p>
@@ -257,16 +265,15 @@ const CreateProductComponent = () => {
 
 						<div className="grid grid-cols-12 gap-4 p-4" id="pricing" ref={el => sectionRefs.current.set('pricing', el)} >
 							<div className="col-span-12 md:col-span-4">
-								<h4 className="text-base font-bold">Summary</h4>
-								<p className="mt-2">Edit your product description and necessary information from here</p>
+								<h4 className="text-base font-bold">Pricing</h4>
+								<p className="mt-2">Add your product pricing here</p>
 							</div>
 							<div className="col-span-12 md:col-span-8 ">
 
 								<div className="grid grid-cols-12 gap-4">
-
 									<div className="col-span-12 md:col-span-6">
 										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Title</label>
+											<label className="inline-block mb-2 text-base font-medium">Price</label>
 											<input
 												type="text"
 												id="productNameInput"
@@ -274,93 +281,7 @@ const CreateProductComponent = () => {
 										</div>
 
 										<div className="col-span-12 mb-5">
-											<label className="inline-block mb-2 text-base font-medium">Type</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5">
-											<label className="inline-block mb-2 text-base font-medium">SKU</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium"> Code</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Category</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Brand</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-
-									</div>
-
-
-									<div className="col-span-12 md:col-span-6">
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium"> Code</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Category</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Brand</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium"> Code</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Category</label>
-											<input
-												type="text"
-												id="productNameInput"
-												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
-										</div>
-
-										<div className="col-span-12 mb-5 ">
-											<label className="inline-block mb-2 text-base font-medium">Brand</label>
+											<label className="inline-block mb-2 text-base font-medium">Cost Price</label>
 											<input
 												type="text"
 												id="productNameInput"
@@ -369,9 +290,83 @@ const CreateProductComponent = () => {
 
 									</div>
 
+
+									<div className="col-span-12 md:col-span-6">
+
+										<div className="col-span-12 mb-5">
+											<label className="inline-block mb-2 text-base font-medium">Retail Price</label>
+											<input
+												type="text"
+												id="productNameInput"
+												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
+										</div>
+
+										<div className="col-span-12 mb-5 ">
+											<label className="inline-block mb-2 text-base font-medium"> Sale Price</label>
+											<input
+												type="text"
+												id="productNameInput"
+												className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+
+							<div className="col-span-12 md:col-span-4">
+								<h4 className="text-base font-bold">Inventory Tracking</h4>
+								<p className="mt-2">Add your product inventory info here</p>
+							</div>
+
+							<div className="col-span-12 md:col-span-8">
+								<div className="flex flex-wrap items-center gap-5">
+									<div className="mt-5 flex-1">
+										<input id="selectSize1" className="hidden peer" type="radio" name="selectSize" value="1" />
+										<label
+											htmlFor="selectSize1"
+											className="flex items-center justify-center p-5 text-xs border rounded-md cursor-pointer border-slate-200 dark:border-zink-500 peer-checked:bg-custom-50 dark:peer-checked:bg-custom-500/20 peer-checked:border-custom-300 dark:peer-checked:border-custom-700 peer-disabled:bg-slate-50 dark:peer-disabled:bg-slate-500/15 peer-disabled:border-slate-100 dark:peer-disabled:border-slate-800 peer-disabled:cursor-default peer-disabled:text-slate-500 dark:peer-disabled:text-zink-200">Lorem Track inventory for this product
+										</label>
+									</div>
+
+
+									<div className="mt-5 flex-1">
+										<input id="selectSize2" className="hidden peer" type="radio" name="selectSize" value="2" />
+										<label
+											htmlFor="selectSize2"
+											className="flex items-center justify-center p-5 text-xs border rounded-md cursor-pointer border-slate-200 dark:border-zink-500 peer-checked:bg-custom-50 dark:peer-checked:bg-custom-500/20 peer-checked:border-custom-300 dark:peer-checked:border-custom-700 peer-disabled:bg-slate-50 dark:peer-disabled:bg-slate-500/15 peer-disabled:border-slate-100 dark:peer-disabled:border-slate-800 peer-disabled:cursor-default peer-disabled:text-slate-500 dark:peer-disabled:text-zink-200">Do not track inventory for this product
+										</label>
+									</div>
+
+									<div className="mt-5 flex-1">
+										<input id="selectSize3" className="hidden peer" type="radio" name="selectSize" value="3" />
+										<label
+											htmlFor="selectSize3"
+											className="flex items-center justify-center p-5 text-xs border rounded-md cursor-pointer border-slate-200 dark:border-zink-500 peer-checked:bg-custom-50 dark:peer-checked:bg-custom-500/20 peer-checked:border-custom-300 dark:peer-checked:border-custom-700 peer-disabled:bg-slate-50 dark:peer-disabled:bg-slate-500/15 peer-disabled:border-slate-100 dark:peer-disabled:border-slate-800 peer-disabled:cursor-default peer-disabled:text-slate-500 dark:peer-disabled:text-zink-200">Track inventory by options
+										</label>
+									</div>
 
 								</div>
 
+
+								<div className="grid grid-cols-12 gap-4 mt-10">
+									<div className="col-span-6 mb-5">
+										<label className="inline-block mb-2 text-base font-medium">Current Stock Level
+										</label>
+										<input
+											type="text"
+											id="productNameInput"
+											className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
+									</div>
+
+									<div className="col-span-6 mb-5">
+										<label className="inline-block mb-2 text-base font-medium">Low Stock Level</label>
+										<input
+											type="text"
+											id="productNameInput"
+											className="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Product title" required />
+									</div>
+								</div>
 							</div>
 						</div>
 
