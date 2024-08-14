@@ -2,11 +2,11 @@ import React, { lazy } from "react";
 import { ChevronUp } from "lucide-react";
 
 const NavBar = lazy(() => import("./NavBar"));
-const Home = lazy(() => import("./Home"));
-const OurFeatures = lazy(() => import("./OurFeatures"));
-const AboutUs = lazy(() => import("./AboutUs"));
-const Contact = lazy(() => import("./Contact"));
-const Footer = lazy(() => import("./Footer"));
+// const Home = lazy(() => import("./Home"));
+// const OurFeatures = lazy(() => import("./OurFeatures"));
+// const AboutUs = lazy(() => import("./AboutUs"));
+// const Contact = lazy(() => import("./Contact"));
+// const Footer = lazy(() => import("./Footer"));
 
 
 const LandingPage = () => {

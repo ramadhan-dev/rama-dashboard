@@ -41,7 +41,7 @@ const CreateProductComponent = () => {
 
 		const observer = new IntersectionObserver(handleScroll, observerOptions);
 
-		sectionRefs.current.forEach((ref, key) => {
+		sectionRefs.current.forEach((ref) => {
 			if (ref) {
 				observer.observe(ref);
 			}

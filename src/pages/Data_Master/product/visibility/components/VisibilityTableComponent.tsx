@@ -109,7 +109,7 @@ const VisibilityTableComponent = () => {
 			cell: ({ row }: any) => {
 				return (
 					<button
-						visibility="button"
+						type="button"
 						className={`relative inline-flex items-center  h-6 rounded-full w-11 ${row.original['status'] ? 'bg-blue-600' : 'bg-red-400'}`}
 						onClick={() => dispatch(updateStatus({ 'id': row.original['_id'] }))}
 					>
@@ -145,7 +145,7 @@ const VisibilityTableComponent = () => {
 					<div className="flex gap-5 justify-center">
 						<button
 							onClick={() => editData(id)}
-							visibility="button"
+							type="button"
 							className="bg-white text-custom-500 btn border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:bg-zink-700 dark:hover:bg-custom-500 dark:ring-custom-400/20 dark:focus:bg-custom-500"
 						>Edit</button>
 
@@ -154,7 +154,7 @@ const VisibilityTableComponent = () => {
 								dispatch(visibilityAction.setShowModalDelete(true))
 								dispatch(visibilityAction.setDataSelected(id))
 							}}
-							visibility="button"
+							type="button"
 							className="bg-white text-red-500 btn border-red-500 hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-custom-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-custom-100 dark:bg-zink-700 dark:hover:bg-red-500 dark:ring-red-400/20 dark:focus:bg-red-500"
 						>Delete</button>
 					</div>

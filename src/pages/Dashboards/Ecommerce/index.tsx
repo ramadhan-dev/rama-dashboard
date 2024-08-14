@@ -2,10 +2,10 @@
 import BreadCrumb from "#/Common/BreadCrumb";
 import React, { lazy, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-const ProductOrderComponent = lazy(() => import("./partials/ProductOrderComponent"))
-const OrderStatisticComponent = lazy(() => import("./partials/OrderStatisticComponent"))
-const CounterComponent = lazy(() => import("./partials/CounterComponent"))
-const SalesRevenueComponent = lazy(() => import("./partials/SalesRevenueComponent"))
+// const ProductOrderComponent = lazy(() => import("./partials/ProductOrderComponent"))
+// const OrderStatisticComponent = lazy(() => import("./partials/OrderStatisticComponent"))
+// const CounterComponent = lazy(() => import("./partials/CounterComponent"))
+// const SalesRevenueComponent = lazy(() => import("./partials/SalesRevenueComponent"))
 const WelcomeComponent = lazy(() => import("./partials/WelcomeComponent"));
 
 const Ecommerce = () => {

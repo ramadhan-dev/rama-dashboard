@@ -2,9 +2,9 @@ import React from "react";
 import { LogIn, Menu } from "lucide-react";
 
 // IMage
-import logoDark from "#/assets/images/logo-3.png";
-import logoLight from "#/assets/images/logo-3.png";
-import { Link } from "react-router-dom";
+// import logoDark from "#/assets/images/logo-3.png";
+// import logoLight from "#/assets/images/logo-3.png";
+// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
