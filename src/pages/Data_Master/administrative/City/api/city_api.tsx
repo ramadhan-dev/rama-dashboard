@@ -1,14 +1,14 @@
-import { API_URL } from "#/Common/constants/env";
+import { API_URL, API_VERSION } from "#/Common/constants/env";
 import { APIClient } from "#/helpers/api_helper";
 import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { UploadProps } from "../store/city.asyncAction";
 
-export const ADD_CITY = API_URL + "/city/create-city";
-export const GET_ALL_CITY = API_URL + "/city/get-all-city";
-export const GET_ONE_CITY = API_URL + "/city/get-city";
-export const UPDATE_CITY = API_URL + "/city/update-city";
-export const DELETE_CITY = API_URL + "/city/delete-city";
-export const GET_CITY_OPTIONS = API_URL + "/city/get-city-options";
+export const ADD_CITY =API_URL + API_VERSION +   "/city/create-city";
+export const GET_ALL_CITY =API_URL + API_VERSION +   "/city/get-all-city";
+export const GET_ONE_CITY =API_URL + API_VERSION +   "/city/get-city";
+export const UPDATE_CITY =API_URL + API_VERSION +   "/city/update-city";
+export const DELETE_CITY =API_URL + API_VERSION +   "/city/delete-city";
+export const GET_CITY_OPTIONS =API_URL + API_VERSION +   "/city/get-city-options";
 
 const api = new APIClient();
 

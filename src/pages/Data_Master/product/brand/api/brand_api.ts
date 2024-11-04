@@ -1,14 +1,14 @@
-import { API_URL } from "#/Common/constants/env";
+import { API_URL, API_VERSION } from "#/Common/constants/env";
 import { APIClient } from "#/helpers/api_helper";
 import { paginationPayload, ProductAtt } from "#/interfaces/common";
 
-export const ADD_BRAND = API_URL + "/product-brand/create-product-brand";
-export const GET_ALL_BRAND = API_URL + "/product-brand/get-all-product-brand";
-export const GET_ONE_BRAND = API_URL + "/product-brand/get-product-brand";
-export const UPDATE_BRAND = API_URL + "/product-brand/update-product-brand";
-export const UPDATE_STATUS = API_URL + "/product-brand/update-status-brand";
-export const DELETE_BRAND = API_URL + "/product-brand/delete-product-brand";
-export const GET_BRAND_OPTIONS = API_URL + "/product-brand/get-brand-options";
+export const ADD_BRAND = API_URL + API_VERSION +   "/product-brand/create-product-brand";
+export const GET_ALL_BRAND = API_URL + API_VERSION +   "/product-brand/get-all-product-brand";
+export const GET_ONE_BRAND = API_URL + API_VERSION +   "/product-brand/get-product-brand";
+export const UPDATE_BRAND = API_URL + API_VERSION +   "/product-brand/update-product-brand";
+export const UPDATE_STATUS = API_URL + API_VERSION +   "/product-brand/update-status-brand";
+export const DELETE_BRAND = API_URL + API_VERSION +   "/product-brand/delete-product-brand";
+export const GET_BRAND_OPTIONS = API_URL + API_VERSION +   "/product-brand/get-brand-options";
 
 const api = new APIClient();
 

@@ -1,14 +1,14 @@
-import { API_URL } from "#/Common/constants/env";
+import { API_URL, API_VERSION } from "#/Common/constants/env";
 import { APIClient } from "#/helpers/api_helper";
 import { paginationPayload, ProductAtt } from "#/interfaces/common";
 
-export const ADD_BRAND = API_URL + "/product-visibility/create-product-visibility";
-export const GET_ALL_BRAND = API_URL + "/product-visibility/get-all-product-visibility";
-export const GET_ONE_BRAND = API_URL + "/product-visibility/get-product-visibility";
-export const UPDATE_BRAND = API_URL + "/product-visibility/update-product-visibility";
-export const UPDATE_STATUS = API_URL + "/product-visibility/update-status-visibility";
-export const DELETE_BRAND = API_URL + "/product-visibility/delete-product-visibility";
-export const GET_BRAND_OPTIONS = API_URL + "/product-visibility/get-visibility-options";
+export const ADD_BRAND = API_URL + API_VERSION + "/product-visibility/create-product-visibility";
+export const GET_ALL_BRAND = API_URL + API_VERSION + "/product-visibility/get-all-product-visibility";
+export const GET_ONE_BRAND = API_URL + API_VERSION + "/product-visibility/get-product-visibility";
+export const UPDATE_BRAND = API_URL + API_VERSION + "/product-visibility/update-product-visibility";
+export const UPDATE_STATUS = API_URL + API_VERSION + "/product-visibility/update-status-visibility";
+export const DELETE_BRAND = API_URL + API_VERSION + "/product-visibility/delete-product-visibility";
+export const GET_BRAND_OPTIONS = API_URL + API_VERSION + "/product-visibility/get-visibility-options";
 
 const api = new APIClient();
 

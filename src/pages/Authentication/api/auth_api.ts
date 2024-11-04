@@ -1,8 +1,8 @@
-import { API_URL } from "#/Common/constants/env";
+import { API_URL, API_VERSION } from "#/Common/constants/env";
 import { APIClient } from "#/helpers/api_helper";
 
-export const POST_LOGIN = API_URL + "/auth/login";
-export const POST_REGISTER = API_URL + "/auth/register";
+export const POST_LOGIN = API_URL + API_VERSION +  "/auth/login";
+export const POST_REGISTER = API_URL + API_VERSION +  "/auth/register";
 
 const api = new APIClient();
 

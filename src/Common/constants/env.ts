@@ -4,6 +4,7 @@ const BASE_URL = import.meta.env.VITE_URL
 const VITE_MODE = import.meta.env.VITE_MODE
 const VITE_DEFAULTAUTH = import.meta.env.VITE_DEFAULTAUTH
 const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY
+const API_VERSION = import.meta.env.VITE_API_VERSION
 
 export {
 	PORT,
@@ -11,5 +12,6 @@ export {
 	API_URL,
 	VITE_MODE,
 	VITE_DEFAULTAUTH,
-	ACCESS_KEY
+	ACCESS_KEY,
+	API_VERSION
 }

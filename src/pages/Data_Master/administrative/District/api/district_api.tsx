@@ -1,14 +1,14 @@
-import { API_URL } from "#/Common/constants/env";
+import { API_URL, API_VERSION } from "#/Common/constants/env";
 import { APIClient } from "#/helpers/api_helper";
 import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { UploadProps } from "../store/district.asyncAction";
 
-export const ADD_DISTRICT = API_URL + "/district/create-district";
-export const GET_ALL_DISTRICT = API_URL + "/district/get-all-district";
-export const GET_ONE_DISTRICT = API_URL + "/district/get-district";
-export const UPDATE_DISTRICT = API_URL + "/district/update-district";
-export const DELETE_DISTRICT = API_URL + "/district/delete-district";
-export const GET_DISTRICT_OPTIONS = API_URL + "/district/get-district-options";
+export const ADD_DISTRICT = API_URL + API_VERSION +   "/district/create-district";
+export const GET_ALL_DISTRICT = API_URL + API_VERSION +   "/district/get-all-district";
+export const GET_ONE_DISTRICT = API_URL + API_VERSION +   "/district/get-district";
+export const UPDATE_DISTRICT = API_URL + API_VERSION +   "/district/update-district";
+export const DELETE_DISTRICT = API_URL + API_VERSION +   "/district/delete-district";
+export const GET_DISTRICT_OPTIONS = API_URL + API_VERSION +   "/district/get-district-options";
 
 const api = new APIClient();
 

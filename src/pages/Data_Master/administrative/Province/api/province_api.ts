@@ -1,14 +1,14 @@
-import { API_URL } from "#/Common/constants/env";
+import { API_URL, API_VERSION } from "#/Common/constants/env";
 import { APIClient } from "#/helpers/api_helper";
 import { masterAdministrative, paginationPayload } from "#/interfaces/common";
 import { UploadProps } from "../store/province.asyncAction";
 
-export const ADD_PROVINCE = API_URL + "/province/create-province";
-export const GET_ALL_PROVINCE = API_URL + "/province/get-all-province";
-export const GET_ONE_PROVINCE = API_URL + "/province/get-province";
-export const UPDATE_PROVINCE = API_URL + "/province/update-province";
-export const DELETE_PROVINCE = API_URL + "/province/delete-province";
-export const GET_PROVINCE_OPTIONS = API_URL + "/province/get-province-options";
+export const ADD_PROVINCE = API_URL + API_VERSION +   "/province/create-province";
+export const GET_ALL_PROVINCE = API_URL + API_VERSION +   "/province/get-all-province";
+export const GET_ONE_PROVINCE = API_URL + API_VERSION +   "/province/get-province";
+export const UPDATE_PROVINCE = API_URL + API_VERSION +   "/province/update-province";
+export const DELETE_PROVINCE = API_URL + API_VERSION +   "/province/delete-province";
+export const GET_PROVINCE_OPTIONS = API_URL + API_VERSION +   "/province/get-province-options";
 
 const api = new APIClient();
 
